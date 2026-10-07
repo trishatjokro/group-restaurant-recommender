@@ -1,12 +1,7 @@
-from langdetect import detect, DetectorFactory, LangDetectException
-DetectorFactory.seed = 0
-
 import re
-import pandas as pd
-import pyarrow as pa
+from langdetect import detect, DetectorFactory, LangDetectException
 
-df = pd.read_parquet("data/reviews_sample.parquet")
-
+DetectorFactory.seed = 0
 
 def filter_reviews(df):
     df = df.copy()
@@ -20,16 +15,17 @@ def filter_reviews(df):
         if not text:
             return False
 
-        # Count actual words
         words = re.findall(r"\b[\w'-]+\b", text)
 
+        # Keep short reviews because language detection is unreliable
+        # for things like "Yum!!" and dish names
         if len(words) < 15:
             return True
 
-        # Collapse repeated characters
+        # Remove long repeated-character sequences before detection
         cleaned = re.sub(r"(.)\1{4,}", r"\1\1", text)
 
-        # Collapse repeated consecutive words
+        # Remove repeated consecutive words
         cleaned = re.sub(
             r"\b(\w+)(?:\s+\1\b)+",
             r"\1",
@@ -43,12 +39,13 @@ def filter_reviews(df):
             "had", "have", "overall", "decent", "much", "not"
         }
 
-        text_words = set(word.lower() for word in words)
+        text_words = {word.lower() for word in words}
         english_matches = len(text_words & english_words)
 
         try:
             language = detect(cleaned)
 
+            # Protect English reviews containing foreign dish names
             if language != "en" and english_matches >= 3:
                 return True
 
@@ -63,16 +60,6 @@ def filter_reviews(df):
     df = df[keep_mask].copy()
 
     removed = before - len(df)
-
     print(f"filter_reviews: removed {removed} rows")
 
     return df
-
-
-# TESTING CODE
-cleaned = filter_reviews(df)
-
-removed = df[~df.index.isin(cleaned.index)]
-
-print("\nReviews that would be removed:")
-print(removed[["text"]].to_string(index=False))
