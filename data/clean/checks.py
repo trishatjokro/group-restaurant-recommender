@@ -56,11 +56,7 @@ def clean_city(df):
         .str.replace(r"^S(?:\.\s*|\s+)", "S. ", regex=True)
         .str.replace(r"^E(?:\.\s*|\s+)", "E. ", regex=True)
         .str.replace(r"^W(?:\.\s*|\s+)", "W. ", regex=True)
-
     )
-
-    #removes state abbreviation from city
-
 
     #correct spelling mistakes and nicknames
     city_mapping = {
@@ -118,14 +114,18 @@ def clean_city(df):
         "Saint Pete": "Saint Petersburg"
     }
     df["city_clean"] = df["city_clean"].replace(city_mapping)
+
+    fixed = (df["city"] != df["city_clean"]).sum()
+    print("clean_city: fixed",fixed,"rows")
+
     return df
 
-
 if __name__ == "__main__":
-    restaurant_cleaned = clean_city(restaurants_sample)
-    check_stars(restaurant_cleaned)
-    check_cities(restaurant_cleaned)
-    check_date(reviews_sample)
+    restaurant_cleaned=clean_city(restaurants_all)
+    changed = restaurant_cleaned.loc[
+        restaurant_cleaned["city"] != restaurant_cleaned["city_clean"]
+    ]
+
 
 
 
