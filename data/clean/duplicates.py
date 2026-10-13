@@ -1,10 +1,6 @@
-import pandas as pd 
+import pandas as pd
 
-restaurants_all = pd.read_parquet("../restaurants_all.parquet")
-restaurants_sample = pd.read_parquet("../restaurants_sample.parquet")
-reviews = pd.read_parquet("../reviews_sample.parquet")
-
-def clean_duplicates(df):
+def clean_duplicates(df, restaurants_all):
     df = df.copy()
 
     #remove duplicate reviews
@@ -36,11 +32,14 @@ def clean_duplicates(df):
     return df
 
 if __name__ == "__main__":
+    restaurants_all = pd.read_parquet("../restaurants_all.parquet")
+    restaurants_sample = pd.read_parquet("../restaurants_sample.parquet")
+    reviews = pd.read_parquet("../reviews_sample.parquet")
     print(restaurants_all.shape)
     print(reviews.shape)
     print(reviews.columns)
     reviews.info()
     print(reviews.duplicated(subset=["text"]).sum())
-    clean_duplicates(reviews)
+    clean_duplicates(reviews, restaurants_all)
     
 
