@@ -4,10 +4,6 @@
 import pandas as pd
 from rapidfuzz import process,fuzz
 
-restaurants_all = pd.read_parquet("../restaurants_all.parquet")
-restaurants_sample = pd.read_parquet("../restaurants_sample.parquet")
-reviews_sample = pd.read_parquet("../reviews_sample.parquet")
-
 def check_stars(df):
     print("Missing stars:", df["stars"].isna().sum())
     invalid = ~df["stars"].between(1, 5)|(df["stars"]%0.5!=0)
@@ -121,6 +117,9 @@ def clean_city(df):
     return df
 
 if __name__ == "__main__":
+    restaurants_all = pd.read_parquet("../restaurants_all.parquet")
+    restaurants_sample = pd.read_parquet("../restaurants_sample.parquet")
+    reviews_sample = pd.read_parquet("../reviews_sample.parquet")
     restaurant_cleaned=clean_city(restaurants_all)
     changed = restaurant_cleaned.loc[
         restaurant_cleaned["city"] != restaurant_cleaned["city_clean"]
