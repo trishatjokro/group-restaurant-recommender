@@ -2,7 +2,6 @@
 # print(os.getcwd())
 
 import pandas as pd
-from rapidfuzz import process,fuzz
 
 def check_stars(df):
     print("Missing stars:", df["stars"].isna().sum())
