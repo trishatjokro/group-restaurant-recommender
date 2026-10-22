@@ -55,7 +55,7 @@ def get_map(restaurants):
 
 
 if __name__ == "__main__":
-    restaurants = pd.read_parquet("../data/output/restaurants_clean.parquet")
+    restaurants = pd.read_parquet("data/output/restaurants_clean.parquet")
     print(restaurants.shape)
     # print(restaurants["stars"].head(10))
     get_map(restaurants)
