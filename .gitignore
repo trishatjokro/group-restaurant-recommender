@@ -1,0 +1,14 @@
+# Python clutter
+__pycache__/
+*.pyc
+
+# Environments
+.venv/
+venv/
+
+# Editor / OS clutter
+.idea/
+.DS_Store
+
+# Big city datasets (too large for GitHub)
+data/cities/
