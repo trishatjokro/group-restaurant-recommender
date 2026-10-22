@@ -78,7 +78,7 @@ def clean_city(df):
         "North Redngtn Beach": "North Redington Beach",
         "Redington Shore": "Redington Shores",
         "Redingtn Shor": "Redington Shores",
-        "W Cherry Hill": "Cherry Hill",
+        "W. Cherry Hill": "Cherry Hill",
         "Town N Country": "Town and Country",
         "Town & Country": "Town and Country",
         "Town 'N' Country": "Town and Country",
