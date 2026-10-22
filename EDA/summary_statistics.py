@@ -16,7 +16,7 @@ print(review_stat)
 
 #missing stats
 def missing(df):
-    pd.DataFrame({
+    return pd.DataFrame({
     "missing_count": df.isna().sum(),
     "missing_percentage": df.isna().mean() * 100
 })
