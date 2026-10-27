@@ -1,10 +1,6 @@
-"""
-Turn a person's onboarding answers into a taste profile, and score every
-restaurant for that person.
+# Turn a person's initial answers into a taste profile, and score every
+# restaurant for that person.
 
-Answers: what they love (text), restaurants they love (names), what they
-dislike (text), price range, dietary needs.
-"""
 
 import numpy as np
 import pandas as pd
