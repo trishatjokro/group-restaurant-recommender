@@ -15,6 +15,13 @@ DIET_CATEGORIES = {               # Yelp category names to look for
     "halal": "Halal",
     "gluten-free": "Gluten-Free",
 }
+DIET_PHRASES = {                  # added to likes when a diet is "prefer"
+    "vegetarian": "great vegetarian options",
+    "vegan": "great vegan options",
+    "halal": "halal food",
+    "gluten-free": "gluten-free options",
+}
+DIET_BONUS = 0.03                 # small boost for tagged places when a diet is "prefer"
 
 _model = None
 
@@ -31,8 +38,9 @@ def _normalize(v):
 
 
 def build_taste_profile(restaurants, loves_text="", loved_names=(), dislikes_text="",
-                        prices=(), diets=()):
-    """restaurants: the restaurant_vectors table. Returns a dict describing one person."""
+                        prices=(), diets=None):
+    """restaurants: the restaurant_vectors table. Returns a dict describing one person.
+    diets: e.g. {"halal": "must", "vegan": "prefer"}; empty = no restriction."""
     model = get_model()
     V = np.vstack(restaurants["vector"].values)
 
@@ -41,6 +49,10 @@ def build_taste_profile(restaurants, loves_text="", loved_names=(), dislikes_tex
         like_parts.append(model.encode(loves_text, normalize_embeddings=True))
     picked = restaurants.index[restaurants["name"].isin(loved_names)]
     like_parts += [V[i] for i in picked]
+    diets = diets or {}
+    for diet, mode in diets.items():
+        if mode == "prefer":
+            like_parts.append(model.encode(DIET_PHRASES[diet], normalize_embeddings=True))
 
     return {
         "likes": _normalize(np.mean(like_parts, axis=0)) if like_parts else None,
@@ -48,7 +60,8 @@ def build_taste_profile(restaurants, loves_text="", loved_names=(), dislikes_tex
                      if dislikes_text.strip() else None),
         "visited": set(restaurants.loc[picked, "business_id"]),
         "prices": set(prices),     # e.g. {1, 2} for $ and $$; empty = any price
-        "diets": set(diets),       # e.g. {"vegetarian"}; empty = no restriction
+        "diets_must": {d for d, m in diets.items() if m == "must"},
+        "diets_prefer": {d for d, m in diets.items() if m == "prefer"},
     }
 
 
@@ -60,6 +73,9 @@ def score_restaurants(taste_profile, restaurants):
         scores += V @ taste_profile["likes"]
     if taste_profile["dislikes"] is not None:
         scores -= DISLIKE_WEIGHT * (V @ taste_profile["dislikes"])
+    for diet in taste_profile["diets_prefer"]:
+        tagged = restaurants["categories"].str.contains(DIET_CATEGORIES[diet], na=False).values
+        scores += DIET_BONUS * tagged
     return scores
 
 
@@ -70,6 +86,6 @@ def allowed(taste_profile, restaurants):
         price = restaurants["attributes"].str.extract(r'"RestaurantsPriceRange2": "(\d)"')[0]
         price = pd.to_numeric(price, errors="coerce")
         ok &= price.isin(taste_profile["prices"]).values | price.isna().values  # unknown price = keep
-    for diet in taste_profile["diets"]:
+    for diet in taste_profile["diets_must"]:
         ok &= restaurants["categories"].str.contains(DIET_CATEGORIES[diet], na=False).values
     return ok
