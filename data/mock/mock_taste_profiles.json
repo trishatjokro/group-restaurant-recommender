@@ -1,0 +1,3922 @@
+[
+  {
+    "group_id": "G01",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Burgers"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Long waits",
+          "Seafood"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "burgers",
+        "dislikes_text": "long waits, seafood"
+      }
+    ]
+  },
+  {
+    "group_id": "G02",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Burgers"
+        ],
+        "vibes": [
+          "Romantic",
+          "Good for groups",
+          "Lively"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "NaBrasa Brazilian Steakhouse",
+          "White Dog Cafe - Wayne",
+          "Dan Dan"
+        ],
+        "loves_text": "bbq, burgers, romantic, good for groups, lively",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi"
+        ],
+        "vibes": [
+          "Casual",
+          "Quiet",
+          "Late night"
+        ],
+        "avoid": [
+          "Loud",
+          "Seafood"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Good Dog Bar",
+          "Fare",
+          "The Love"
+        ],
+        "loves_text": "sushi, casual, quiet, late night",
+        "dislikes_text": "loud, seafood"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Chinese",
+          "BBQ"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "brunch, chinese, bbq",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G03",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Desserts",
+          "Italian",
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Quiet",
+          "Romantic"
+        ],
+        "avoid": [
+          "Loud",
+          "Chains"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Not Your Average Joe's"
+        ],
+        "loves_text": "burgers, desserts, italian, cheesesteaks, quiet, romantic",
+        "dislikes_text": "loud, chains"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Burgers",
+          "BBQ",
+          "Korean"
+        ],
+        "vibes": [
+          "Quiet"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "mexican, burgers, bbq, korean, quiet",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Chinese"
+        ],
+        "vibes": [
+          "Romantic",
+          "Good for groups"
+        ],
+        "avoid": [
+          "Chains"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Cantina Dos Segundos",
+          "Max's Steaks"
+        ],
+        "loves_text": "chinese, romantic, good for groups",
+        "dislikes_text": "chains"
+      }
+    ]
+  },
+  {
+    "group_id": "G04",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "Chinese",
+          "Cheesesteaks",
+          "Korean"
+        ],
+        "vibes": [
+          "Casual",
+          "Cozy",
+          "Cocktails"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "italian, chinese, cheesesteaks, korean, casual, cozy, cocktails",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Mexican",
+          "Coffee",
+          "Pizza"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Fast food",
+          "Loud"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "David's Mai Lai Wah",
+          "Khyber Pass Pub"
+        ],
+        "loves_text": "korean, mexican, coffee, pizza",
+        "dislikes_text": "fast food, loud"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Seafood",
+          "Cheesesteaks"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Loud",
+          "Chains"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "2nd Story Brewing"
+        ],
+        "loves_text": "korean, seafood, cheesesteaks",
+        "dislikes_text": "loud, chains"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Brunch"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Cozy"
+        ],
+        "avoid": [],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Vedge"
+        ],
+        "loves_text": "brunch, good for groups, cozy",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G05",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "BBQ"
+        ],
+        "vibes": [
+          "Casual",
+          "Late night",
+          "Trendy"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Isgro Pastries",
+          "Little Fish"
+        ],
+        "loves_text": "bbq, casual, late night, trendy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Mexican"
+        ],
+        "vibes": [
+          "Quiet",
+          "Good for groups",
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Honey's Sit-N-Eat"
+        ],
+        "loves_text": "bbq, mexican, quiet, good for groups, late night",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Chinese"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Max Brenner - Philadelphia"
+        ],
+        "loves_text": "brunch, chinese",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G06",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Chinese",
+          "Korean",
+          "Cheesesteaks",
+          "BBQ"
+        ],
+        "vibes": [
+          "Romantic",
+          "Good for groups",
+          "Outdoor seating"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {
+          "halal": "must"
+        },
+        "loved_restaurants": [],
+        "loves_text": "chinese, korean, cheesesteaks, bbq, romantic, good for groups, outdoor seating",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "Desserts",
+          "BBQ",
+          "Pizza"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "IndeBlue Modern Indian Food & Spirits",
+          "The Couch Tomato Bistro"
+        ],
+        "loves_text": "indian, desserts, bbq, pizza",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G07",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Mexican",
+          "Indian",
+          "Chinese"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "cheesesteaks, mexican, indian, chinese",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Thai"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Romantic",
+          "Outdoor seating"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Pat's King of Steaks",
+          "Crazy Sushi",
+          "Lorenzo & Sons Pizza"
+        ],
+        "loves_text": "cheesesteaks, thai, good for groups, romantic, outdoor seating",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Thai",
+          "BBQ",
+          "Desserts"
+        ],
+        "vibes": [
+          "Trendy",
+          "Romantic",
+          "Lively"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "thai, bbq, desserts, trendy, romantic, lively",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G08",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Pizza",
+          "Korean"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "pizza, korean",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Coffee"
+        ],
+        "vibes": [
+          "Cocktails"
+        ],
+        "avoid": [
+          "Seafood",
+          "Fast food"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Mad Mex - Willow Grove",
+          "Karma Restaurant & Bar",
+          "Fuji Mountain"
+        ],
+        "loves_text": "coffee, cocktails",
+        "dislikes_text": "seafood, fast food"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Chinese",
+          "Mexican",
+          "Thai"
+        ],
+        "vibes": [
+          "Lively"
+        ],
+        "avoid": [
+          "Loud"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "chinese, mexican, thai, lively",
+        "dislikes_text": "loud"
+      }
+    ]
+  },
+  {
+    "group_id": "G09",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Sushi"
+        ],
+        "vibes": [
+          "Late night"
+        ],
+        "avoid": [
+          "Spicy"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "honeygrow"
+        ],
+        "loves_text": "sushi, late night",
+        "dislikes_text": "spicy"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Seafood",
+          "Burgers"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive",
+          "Fast food"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "brunch, seafood, burgers",
+        "dislikes_text": "expensive, fast food"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Coffee"
+        ],
+        "vibes": [
+          "Quiet"
+        ],
+        "avoid": [],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {
+          "vegetarian": "must"
+        },
+        "loved_restaurants": [
+          "North Third",
+          "Village Whiskey",
+          "Little Nonna's"
+        ],
+        "loves_text": "mexican, coffee, quiet",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Pizza"
+        ],
+        "vibes": [
+          "Trendy",
+          "Lively"
+        ],
+        "avoid": [],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "pizza, trendy, lively",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Pizza"
+        ],
+        "vibes": [
+          "Cocktails",
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "korean, pizza, cocktails, late night",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G10",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Coffee"
+        ],
+        "vibes": [
+          "Romantic",
+          "Cocktails"
+        ],
+        "avoid": [
+          "Seafood",
+          "Loud"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Green Eggs Cafe"
+        ],
+        "loves_text": "coffee, romantic, cocktails",
+        "dislikes_text": "seafood, loud"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Pizza",
+          "Cheesesteaks",
+          "BBQ",
+          "Italian"
+        ],
+        "vibes": [
+          "Romantic",
+          "Lively",
+          "Trendy"
+        ],
+        "avoid": [
+          "Seafood",
+          "Long waits"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Pho Xe Lua Viet Thai Restaurant",
+          "Sam's Morning Glory Diner",
+          "DuBu"
+        ],
+        "loves_text": "pizza, cheesesteaks, bbq, italian, romantic, lively, trendy",
+        "dislikes_text": "seafood, long waits"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Chinese",
+          "Pizza"
+        ],
+        "vibes": [
+          "Outdoor seating"
+        ],
+        "avoid": [
+          "Loud"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Ristorante Pesto",
+          "Beck's Cajun Cafe"
+        ],
+        "loves_text": "chinese, pizza, outdoor seating",
+        "dislikes_text": "loud"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Pizza",
+          "Sushi",
+          "Mexican"
+        ],
+        "vibes": [
+          "Cocktails"
+        ],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Sagami",
+          "The Twisted Tail",
+          "Parx Casino"
+        ],
+        "loves_text": "pizza, sushi, mexican, cocktails",
+        "dislikes_text": "seafood"
+      }
+    ]
+  },
+  {
+    "group_id": "G11",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Pizza",
+          "BBQ",
+          "Thai"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive",
+          "Fast food"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "La Viola",
+          "Alma de Cuba"
+        ],
+        "loves_text": "pizza, bbq, thai",
+        "dislikes_text": "expensive, fast food"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Desserts",
+          "Sushi"
+        ],
+        "vibes": [
+          "Late night",
+          "Lively"
+        ],
+        "avoid": [
+          "Long waits",
+          "Loud"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "The Cheesecake Factory - Cherry Hill",
+          "El Rey"
+        ],
+        "loves_text": "burgers, desserts, sushi, late night, lively",
+        "dislikes_text": "long waits, loud"
+      }
+    ]
+  },
+  {
+    "group_id": "G12",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Coffee"
+        ],
+        "vibes": [
+          "Outdoor seating",
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "La Viola"
+        ],
+        "loves_text": "brunch, coffee, outdoor seating, late night",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "Coffee",
+          "Desserts"
+        ],
+        "vibes": [
+          "Late night"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Limoncello Ristorante & Caterers",
+          "Chickie's & Pete's"
+        ],
+        "loves_text": "indian, coffee, desserts, late night",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 3",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G13",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Pizza"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "cheesesteaks, pizza",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Coffee"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Outdoor seating",
+          "Romantic"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "bbq, coffee, good for groups, outdoor seating, romantic",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Pizza",
+          "Korean",
+          "Chinese",
+          "Sushi"
+        ],
+        "vibes": [
+          "Trendy",
+          "Good for groups",
+          "Quiet"
+        ],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Devil's Alley Bar & Grille",
+          "South",
+          "Independence Beer Garden"
+        ],
+        "loves_text": "pizza, korean, chinese, sushi, trendy, good for groups, quiet",
+        "dislikes_text": "fast food"
+      }
+    ]
+  },
+  {
+    "group_id": "G14",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Seafood",
+          "Coffee",
+          "Korean"
+        ],
+        "vibes": [
+          "Romantic",
+          "Lively",
+          "Good for groups"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Chickie's & Pete's",
+          "The Pop Shop - Collingswood"
+        ],
+        "loves_text": "seafood, coffee, korean, romantic, lively, good for groups",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Cheesesteaks",
+          "Coffee",
+          "Chinese"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Long waits"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {
+          "vegan": "must"
+        },
+        "loved_restaurants": [
+          "True Food Kitchen",
+          "Oyster House",
+          "Dizengoff"
+        ],
+        "loves_text": "bbq, cheesesteaks, coffee, chinese",
+        "dislikes_text": "long waits"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Desserts"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Cozy",
+          "Quiet"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Leo's Steak Shop"
+        ],
+        "loves_text": "desserts, good for groups, cozy, quiet",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Thai"
+        ],
+        "vibes": [
+          "Outdoor seating",
+          "Trendy"
+        ],
+        "avoid": [
+          "Spicy"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Spice C",
+          "Nan Zhou Hand Drawn Noodle House",
+          "Nine Ting"
+        ],
+        "loves_text": "thai, outdoor seating, trendy",
+        "dislikes_text": "spicy"
+      }
+    ]
+  },
+  {
+    "group_id": "G15",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Mexican"
+        ],
+        "vibes": [
+          "Quiet",
+          "Romantic",
+          "Good for groups"
+        ],
+        "avoid": [
+          "Loud"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Maggiano's Little Italy",
+          "Mixto",
+          "Dim Sum House"
+        ],
+        "loves_text": "mexican, quiet, romantic, good for groups",
+        "dislikes_text": "loud"
+      },
+      {
+        "member": "Member 2",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Chinese",
+          "Burgers",
+          "Sushi"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Dim Sum Garden"
+        ],
+        "loves_text": "chinese, burgers, sushi",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Sushi",
+          "Brunch",
+          "Chinese"
+        ],
+        "vibes": [
+          "Lively",
+          "Quiet",
+          "Trendy"
+        ],
+        "avoid": [
+          "Fast food",
+          "Chains"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "IndeBlue Modern Indian Food & Spirits",
+          "Strangelove's"
+        ],
+        "loves_text": "burgers, sushi, brunch, chinese, lively, quiet, trendy",
+        "dislikes_text": "fast food, chains"
+      },
+      {
+        "member": "Member 5",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G16",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Thai",
+          "BBQ",
+          "Chinese",
+          "Sushi"
+        ],
+        "vibes": [
+          "Casual"
+        ],
+        "avoid": [
+          "Expensive",
+          "Loud"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "thai, bbq, chinese, sushi, casual",
+        "dislikes_text": "expensive, loud"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Korean",
+          "Burgers"
+        ],
+        "vibes": [
+          "Cozy",
+          "Outdoor seating"
+        ],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Cantina Los Caballitos",
+          "David's Mai Lai Wah",
+          "Chickie's and Pete's"
+        ],
+        "loves_text": "sushi, korean, burgers, cozy, outdoor seating",
+        "dislikes_text": "seafood"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Seafood",
+          "Korean"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Outdoor seating",
+          "Lively"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "brunch, seafood, korean, good for groups, outdoor seating, lively",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Coffee",
+          "Burgers",
+          "Thai"
+        ],
+        "vibes": [
+          "Cozy",
+          "Good for groups"
+        ],
+        "avoid": [
+          "Spicy"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Dolsot House",
+          "NaBrasa Brazilian Steakhouse"
+        ],
+        "loves_text": "brunch, coffee, burgers, thai, cozy, good for groups",
+        "dislikes_text": "spicy"
+      }
+    ]
+  },
+  {
+    "group_id": "G17",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Pizza",
+          "Coffee"
+        ],
+        "vibes": [
+          "Casual"
+        ],
+        "avoid": [],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "South"
+        ],
+        "loves_text": "korean, pizza, coffee, casual",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi"
+        ],
+        "vibes": [
+          "Romantic",
+          "Outdoor seating"
+        ],
+        "avoid": [
+          "Spicy",
+          "Loud"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "The Cheesecake Factory - Cherry Hill",
+          "Taqueria La Veracruzana",
+          "Sagami"
+        ],
+        "loves_text": "sushi, romantic, outdoor seating",
+        "dislikes_text": "spicy, loud"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "BBQ",
+          "Indian"
+        ],
+        "vibes": [
+          "Lively",
+          "Cocktails"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "The Couch Tomato Cafe"
+        ],
+        "loves_text": "italian, bbq, indian, lively, cocktails",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Chinese",
+          "Coffee"
+        ],
+        "vibes": [
+          "Lively",
+          "Late night",
+          "Cocktails"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Saad's Halal Restaurant",
+          "Gyu-Kaku Japanese BBQ"
+        ],
+        "loves_text": "chinese, coffee, lively, late night, cocktails",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G18",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Pizza"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Loud",
+          "Chains"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Chubby Cattle",
+          "Parc",
+          "Mac's Tavern"
+        ],
+        "loves_text": "mexican, pizza",
+        "dislikes_text": "loud, chains"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Pizza",
+          "Mexican"
+        ],
+        "vibes": [
+          "Casual",
+          "Cocktails",
+          "Outdoor seating"
+        ],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "National Mechanics"
+        ],
+        "loves_text": "cheesesteaks, pizza, mexican, casual, cocktails, outdoor seating",
+        "dislikes_text": "seafood"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Chinese"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive",
+          "Long waits"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Independence Beer Garden",
+          "Dave & Buster's",
+          "Red Owl Tavern"
+        ],
+        "loves_text": "chinese",
+        "dislikes_text": "expensive, long waits"
+      }
+    ]
+  },
+  {
+    "group_id": "G19",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Seafood"
+        ],
+        "vibes": [
+          "Romantic"
+        ],
+        "avoid": [
+          "Chains"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Campo's Philly Cheesesteaks"
+        ],
+        "loves_text": "seafood, romantic",
+        "dislikes_text": "chains"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Brunch",
+          "Indian",
+          "Mexican"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          3
+        ],
+        "diets": {
+          "gluten-free": "must"
+        },
+        "loved_restaurants": [
+          "Oh Brother Philly",
+          "Cleavers"
+        ],
+        "loves_text": "bbq, brunch, indian, mexican",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Thai",
+          "Sushi"
+        ],
+        "vibes": [
+          "Trendy"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "thai, sushi, trendy",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 4",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "Sushi",
+          "Coffee"
+        ],
+        "vibes": [
+          "Outdoor seating",
+          "Lively"
+        ],
+        "avoid": [
+          "Fast food",
+          "Long waits"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "indian, sushi, coffee, outdoor seating, lively",
+        "dislikes_text": "fast food, long waits"
+      }
+    ]
+  },
+  {
+    "group_id": "G20",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Sushi"
+        ],
+        "vibes": [
+          "Cocktails"
+        ],
+        "avoid": [
+          "Seafood",
+          "Chains"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "sushi, cocktails",
+        "dislikes_text": "seafood, chains"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Coffee",
+          "Mexican",
+          "Cheesesteaks",
+          "Brunch"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Casual",
+          "Cocktails"
+        ],
+        "avoid": [
+          "Long waits"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "coffee, mexican, cheesesteaks, brunch, good for groups, casual, cocktails",
+        "dislikes_text": "long waits"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Burgers",
+          "Thai",
+          "Korean"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Charlie Was a Sinner",
+          "QT Vietnamese Sandwich"
+        ],
+        "loves_text": "mexican, burgers, thai, korean",
+        "dislikes_text": "seafood"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Burgers"
+        ],
+        "vibes": [
+          "Outdoor seating",
+          "Cozy",
+          "Romantic"
+        ],
+        "avoid": [
+          "Loud",
+          "Fast food"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Village Whiskey",
+          "Bar Bomb\u00f3n",
+          "Ralphs Italian Restaurant"
+        ],
+        "loves_text": "burgers, outdoor seating, cozy, romantic",
+        "dislikes_text": "loud, fast food"
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Coffee",
+          "BBQ",
+          "Indian",
+          "Sushi"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Fast food",
+          "Spicy"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "coffee, bbq, indian, sushi",
+        "dislikes_text": "fast food, spicy"
+      }
+    ]
+  },
+  {
+    "group_id": "G21",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Burgers",
+          "Cheesesteaks",
+          "Indian"
+        ],
+        "vibes": [
+          "Late night",
+          "Lively"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Brick & Brew"
+        ],
+        "loves_text": "sushi, burgers, cheesesteaks, indian, late night, lively",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Desserts",
+          "Sushi"
+        ],
+        "vibes": [
+          "Outdoor seating",
+          "Quiet"
+        ],
+        "avoid": [
+          "Loud",
+          "Seafood"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Strangelove's",
+          "Local 44"
+        ],
+        "loves_text": "desserts, sushi, outdoor seating, quiet",
+        "dislikes_text": "loud, seafood"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "Coffee",
+          "Korean",
+          "Seafood"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Quiet",
+          "Romantic"
+        ],
+        "avoid": [
+          "Spicy",
+          "Fast food"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Sonny's Famous Steaks",
+          "The Jug Handle Inn",
+          "BurgerFi"
+        ],
+        "loves_text": "italian, coffee, korean, seafood, good for groups, quiet, romantic",
+        "dislikes_text": "spicy, fast food"
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Seafood",
+          "Coffee",
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Cozy",
+          "Trendy",
+          "Quiet"
+        ],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Jim's South St",
+          "Tria Cafe Rittenhouse",
+          "Seorabol Korean Restaurant"
+        ],
+        "loves_text": "burgers, seafood, coffee, cheesesteaks, cozy, trendy, quiet",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G22",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Sushi",
+          "Italian",
+          "Coffee"
+        ],
+        "vibes": [
+          "Quiet",
+          "Good for groups",
+          "Cozy"
+        ],
+        "avoid": [
+          "Seafood",
+          "Spicy"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Luke's Lobster Rittenhouse"
+        ],
+        "loves_text": "burgers, sushi, italian, coffee, quiet, good for groups, cozy",
+        "dislikes_text": "seafood, spicy"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Mexican"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {
+          "gluten-free": "must"
+        },
+        "loved_restaurants": [
+          "Jack's Firehouse",
+          "2nd Story Brewing"
+        ],
+        "loves_text": "bbq, mexican",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G23",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Coffee"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive",
+          "Long waits"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Mad Mex - Willow Grove",
+          "Tria Cafe Rittenhouse",
+          "Manayunk Brewery"
+        ],
+        "loves_text": "cheesesteaks, coffee",
+        "dislikes_text": "expensive, long waits"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Pizza",
+          "Seafood"
+        ],
+        "vibes": [
+          "Lively",
+          "Late night",
+          "Trendy"
+        ],
+        "avoid": [],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Paladar Latin Kitchen",
+          "North Third"
+        ],
+        "loves_text": "burgers, pizza, seafood, lively, late night, trendy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Desserts",
+          "Indian",
+          "Sushi",
+          "Chinese"
+        ],
+        "vibes": [
+          "Cocktails",
+          "Quiet",
+          "Lively"
+        ],
+        "avoid": [
+          "Loud",
+          "Seafood"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "desserts, indian, sushi, chinese, cocktails, quiet, lively",
+        "dislikes_text": "loud, seafood"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Coffee"
+        ],
+        "vibes": [
+          "Lively",
+          "Romantic",
+          "Quiet"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Double Knot"
+        ],
+        "loves_text": "coffee, lively, romantic, quiet",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Seafood",
+          "Indian",
+          "Pizza"
+        ],
+        "vibes": [
+          "Trendy",
+          "Casual"
+        ],
+        "avoid": [
+          "Loud"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Silk City Diner & Lounge"
+        ],
+        "loves_text": "seafood, indian, pizza, trendy, casual",
+        "dislikes_text": "loud"
+      }
+    ]
+  },
+  {
+    "group_id": "G24",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Desserts"
+        ],
+        "vibes": [
+          "Lively",
+          "Quiet",
+          "Casual"
+        ],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "1225Raw Sushi and Sake Lounge"
+        ],
+        "loves_text": "mexican, desserts, lively, quiet, casual",
+        "dislikes_text": "seafood"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Seafood",
+          "Thai"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Nomad Pizza Company",
+          "Marrakesh",
+          "a.kitchen"
+        ],
+        "loves_text": "sushi, seafood, thai",
+        "dislikes_text": "fast food"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Burgers",
+          "Chinese"
+        ],
+        "vibes": [
+          "Cozy",
+          "Late night",
+          "Quiet"
+        ],
+        "avoid": [
+          "Spicy",
+          "Chains"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Pub & Kitchen",
+          "Seorabol Korean Restaurant",
+          "Charlie Was a Sinner"
+        ],
+        "loves_text": "sushi, burgers, chinese, cozy, late night, quiet",
+        "dislikes_text": "spicy, chains"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "Sushi",
+          "Desserts"
+        ],
+        "vibes": [
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "The Pour House - Westmont",
+          "Federal Donuts"
+        ],
+        "loves_text": "indian, sushi, desserts, late night",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G25",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Thai",
+          "Mexican",
+          "Pizza"
+        ],
+        "vibes": [
+          "Romantic",
+          "Good for groups"
+        ],
+        "avoid": [
+          "Spicy"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Ting Wong Restaurant",
+          "Jack's Firehouse"
+        ],
+        "loves_text": "brunch, thai, mexican, pizza, romantic, good for groups",
+        "dislikes_text": "spicy"
+      },
+      {
+        "member": "Member 2",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Burgers",
+          "Chinese",
+          "Desserts"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Karma Restaurant & Bar"
+        ],
+        "loves_text": "sushi, burgers, chinese, desserts",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G26",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Desserts",
+          "Coffee"
+        ],
+        "vibes": [
+          "Quiet"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Giorgio On Pine"
+        ],
+        "loves_text": "desserts, coffee, quiet",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Burgers"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Positano Coast by Aldo Lamberti",
+          "Winnie's Manayunk"
+        ],
+        "loves_text": "burgers",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G27",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Indian"
+        ],
+        "vibes": [
+          "Quiet",
+          "Late night",
+          "Casual"
+        ],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [],
+        "diets": {
+          "vegetarian": "prefer"
+        },
+        "loved_restaurants": [],
+        "loves_text": "indian, quiet, late night, casual",
+        "dislikes_text": "fast food"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "Burgers",
+          "Pizza"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "indian, burgers, pizza",
+        "dislikes_text": "expensive"
+      }
+    ]
+  },
+  {
+    "group_id": "G28",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Italian"
+        ],
+        "vibes": [
+          "Casual"
+        ],
+        "avoid": [],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Revolution House",
+          "Taqueria La Veracruzana"
+        ],
+        "loves_text": "italian, casual",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Seafood",
+          "BBQ",
+          "Coffee"
+        ],
+        "vibes": [
+          "Outdoor seating"
+        ],
+        "avoid": [
+          "Spicy"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Bubblefish",
+          "True Food Kitchen",
+          "Founding Farmers King of Prussia"
+        ],
+        "loves_text": "sushi, seafood, bbq, coffee, outdoor seating",
+        "dislikes_text": "spicy"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "Cheesesteaks",
+          "Burgers"
+        ],
+        "vibes": [
+          "Casual",
+          "Cocktails",
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Giorgio On Pine",
+          "Devil's Den"
+        ],
+        "loves_text": "italian, cheesesteaks, burgers, casual, cocktails, late night",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Thai"
+        ],
+        "vibes": [
+          "Outdoor seating",
+          "Cozy"
+        ],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "thai, outdoor seating, cozy",
+        "dislikes_text": "fast food"
+      }
+    ]
+  },
+  {
+    "group_id": "G29",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Italian"
+        ],
+        "vibes": [
+          "Casual",
+          "Lively"
+        ],
+        "avoid": [
+          "Spicy",
+          "Long waits"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Monk's Cafe",
+          "Shake Shack"
+        ],
+        "loves_text": "italian, casual, lively",
+        "dislikes_text": "spicy, long waits"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "Pizza",
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Cocktails"
+        ],
+        "avoid": [
+          "Long waits",
+          "Seafood"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "italian, pizza, cheesesteaks, cocktails",
+        "dislikes_text": "long waits, seafood"
+      },
+      {
+        "member": "Member 3",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G30",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "Mexican"
+        ],
+        "vibes": [
+          "Cocktails",
+          "Casual"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Buddakan"
+        ],
+        "loves_text": "italian, mexican, cocktails, casual",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "Brunch",
+          "Coffee",
+          "Thai"
+        ],
+        "vibes": [
+          "Romantic",
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "indian, brunch, coffee, thai, romantic, late night",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Burgers",
+          "Mexican",
+          "Pizza"
+        ],
+        "vibes": [
+          "Outdoor seating"
+        ],
+        "avoid": [
+          "Seafood",
+          "Expensive"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Hershel's East Side Deli",
+          "Harp & Crown"
+        ],
+        "loves_text": "korean, burgers, mexican, pizza, outdoor seating",
+        "dislikes_text": "seafood, expensive"
+      }
+    ]
+  },
+  {
+    "group_id": "G31",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Thai"
+        ],
+        "vibes": [
+          "Late night"
+        ],
+        "avoid": [
+          "Expensive",
+          "Chains"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {
+          "gluten-free": "prefer"
+        },
+        "loved_restaurants": [
+          "Terakawa Ramen",
+          "Parx Casino",
+          "Green Eggs Caf\u00e9"
+        ],
+        "loves_text": "cheesesteaks, thai, late night",
+        "dislikes_text": "expensive, chains"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Burgers",
+          "Thai",
+          "Mexican"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {
+          "gluten-free": "prefer"
+        },
+        "loved_restaurants": [
+          "Zama",
+          "Devon Seafood Grill",
+          "Parx Casino"
+        ],
+        "loves_text": "bbq, burgers, thai, mexican",
+        "dislikes_text": "seafood"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Sushi",
+          "Thai",
+          "Mexican"
+        ],
+        "vibes": [
+          "Romantic",
+          "Quiet"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "korean, sushi, thai, mexican, romantic, quiet",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "BBQ",
+          "Burgers"
+        ],
+        "vibes": [
+          "Romantic"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Yakitori Boy",
+          "Dutch Eating Place"
+        ],
+        "loves_text": "italian, bbq, burgers, romantic",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G32",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Seafood",
+          "Burgers"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Cocktails",
+          "Quiet"
+        ],
+        "avoid": [
+          "Loud",
+          "Spicy"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Dave & Buster's",
+          "La Colombe Coffee",
+          "Day By Day"
+        ],
+        "loves_text": "seafood, burgers, good for groups, cocktails, quiet",
+        "dislikes_text": "loud, spicy"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Mexican"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Cozy",
+          "Late night"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "mexican, good for groups, cozy, late night",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Korean",
+          "Seafood",
+          "BBQ"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "South",
+          "Coyote Crossing"
+        ],
+        "loves_text": "brunch, korean, seafood, bbq",
+        "dislikes_text": "expensive"
+      }
+    ]
+  },
+  {
+    "group_id": "G33",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "BBQ",
+          "Sushi",
+          "Korean"
+        ],
+        "vibes": [
+          "Cozy"
+        ],
+        "avoid": [],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Grand Lux Cafe - King of Prussia"
+        ],
+        "loves_text": "bbq, sushi, korean, cozy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Seafood",
+          "Italian",
+          "Burgers",
+          "Brunch"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Chains",
+          "Loud"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Founding Farmers King of Prussia",
+          "El Limon - Ambler"
+        ],
+        "loves_text": "seafood, italian, burgers, brunch",
+        "dislikes_text": "chains, loud"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "Sushi"
+        ],
+        "vibes": [
+          "Quiet"
+        ],
+        "avoid": [
+          "Chains"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Cuba Libre Restaurant & Rum Bar - Philadelphia"
+        ],
+        "loves_text": "italian, sushi, quiet",
+        "dislikes_text": "chains"
+      }
+    ]
+  },
+  {
+    "group_id": "G34",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Desserts",
+          "Cheesesteaks",
+          "Burgers"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Chains",
+          "Long waits"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Barcelona Wine Bar Passyunk",
+          "Shake Shack"
+        ],
+        "loves_text": "desserts, cheesesteaks, burgers",
+        "dislikes_text": "chains, long waits"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Chinese",
+          "Coffee",
+          "Cheesesteaks",
+          "Seafood"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "chinese, coffee, cheesesteaks, seafood",
+        "dislikes_text": "expensive"
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Thai"
+        ],
+        "vibes": [
+          "Trendy"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Sonny's Famous Steaks",
+          "Ants Pants Caf\u00e9",
+          "Grand Lux Cafe - King of Prussia"
+        ],
+        "loves_text": "brunch, thai, trendy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Mexican",
+          "Seafood",
+          "BBQ"
+        ],
+        "vibes": [
+          "Romantic",
+          "Late night",
+          "Cocktails"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Isot Mediterranean Cuisine",
+          "Harper's Garden"
+        ],
+        "loves_text": "brunch, mexican, seafood, bbq, romantic, late night, cocktails",
+        "dislikes_text": "expensive"
+      }
+    ]
+  },
+  {
+    "group_id": "G35",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Desserts",
+          "Chinese",
+          "Brunch"
+        ],
+        "vibes": [
+          "Lively"
+        ],
+        "avoid": [],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "cheesesteaks, desserts, chinese, brunch, lively",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Mexican"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Parx Casino"
+        ],
+        "loves_text": "mexican",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Coffee",
+          "Pizza",
+          "Thai"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Mixto",
+          "2nd Story Brewing",
+          "The Farm and Fisherman Tavern"
+        ],
+        "loves_text": "coffee, pizza, thai",
+        "dislikes_text": "fast food"
+      },
+      {
+        "member": "Member 5",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G36",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Pizza"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Trendy"
+        ],
+        "avoid": [
+          "Long waits",
+          "Expensive"
+        ],
+        "prices": [
+          1,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "cheesesteaks, pizza, good for groups, trendy",
+        "dislikes_text": "long waits, expensive"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Seafood",
+          "Mexican",
+          "Chinese"
+        ],
+        "vibes": [
+          "Casual",
+          "Cozy"
+        ],
+        "avoid": [],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Honey's Sit-N-Eat",
+          "Fat Salmon",
+          "Vetri Cucina"
+        ],
+        "loves_text": "sushi, seafood, mexican, chinese, casual, cozy",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G37",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Thai"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Loud",
+          "Spicy"
+        ],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "mexican, thai",
+        "dislikes_text": "loud, spicy"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Thai"
+        ],
+        "vibes": [
+          "Cozy",
+          "Outdoor seating",
+          "Quiet"
+        ],
+        "avoid": [
+          "Chains"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Max Brenner - Philadelphia",
+          "Sagami"
+        ],
+        "loves_text": "thai, cozy, outdoor seating, quiet",
+        "dislikes_text": "chains"
+      }
+    ]
+  },
+  {
+    "group_id": "G38",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Pizza",
+          "Italian"
+        ],
+        "vibes": [
+          "Trendy",
+          "Good for groups"
+        ],
+        "avoid": [
+          "Long waits",
+          "Chains"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Honey's Sit-N-Eat"
+        ],
+        "loves_text": "cheesesteaks, pizza, italian, trendy, good for groups",
+        "dislikes_text": "long waits, chains"
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Mexican"
+        ],
+        "vibes": [
+          "Cozy"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Barcelona Wine Bar Passyunk",
+          "Limoncello Ristorante & Caterers"
+        ],
+        "loves_text": "mexican, cozy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Mexican",
+          "Pizza",
+          "Seafood",
+          "Burgers"
+        ],
+        "vibes": [
+          "Lively"
+        ],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Manakeesh Cafe Bakery & Grill",
+          "Frankford Hall"
+        ],
+        "loves_text": "mexican, pizza, seafood, burgers, lively",
+        "dislikes_text": "expensive"
+      }
+    ]
+  },
+  {
+    "group_id": "G39",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Coffee",
+          "Thai",
+          "Italian",
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Quiet",
+          "Lively"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Shake Shack",
+          "Tired Hands Fermentaria",
+          "The Love"
+        ],
+        "loves_text": "coffee, thai, italian, cheesesteaks, good for groups, quiet, lively",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "BBQ",
+          "Thai",
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Quiet",
+          "Good for groups",
+          "Cozy"
+        ],
+        "avoid": [
+          "Expensive",
+          "Loud"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {
+          "halal": "prefer"
+        },
+        "loved_restaurants": [],
+        "loves_text": "brunch, bbq, thai, cheesesteaks, quiet, good for groups, cozy",
+        "dislikes_text": "expensive, loud"
+      },
+      {
+        "member": "Member 3",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Pizza",
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Cozy",
+          "Trendy",
+          "Casual"
+        ],
+        "avoid": [],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Xochitl",
+          "Sampan",
+          "Cantina Los Caballitos"
+        ],
+        "loves_text": "pizza, cheesesteaks, cozy, trendy, casual",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "G40",
+    "note": "random",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Brunch"
+        ],
+        "vibes": [
+          "Late night"
+        ],
+        "avoid": [
+          "Long waits"
+        ],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "The Couch Tomato Bistro",
+          "Distrito"
+        ],
+        "loves_text": "brunch, late night",
+        "dislikes_text": "long waits"
+      },
+      {
+        "member": "Member 2",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Mexican"
+        ],
+        "vibes": [
+          "Good for groups",
+          "Romantic"
+        ],
+        "avoid": [
+          "Loud",
+          "Chains"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "mexican, good for groups, romantic",
+        "dislikes_text": "loud, chains"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Seafood"
+        ],
+        "vibes": [
+          "Quiet",
+          "Casual"
+        ],
+        "avoid": [
+          "Fast food",
+          "Loud"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {
+          "gluten-free": "must"
+        },
+        "loved_restaurants": [
+          "Zama"
+        ],
+        "loves_text": "seafood, quiet, casual",
+        "dislikes_text": "fast food, loud"
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Seafood",
+          "Indian"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {
+          "vegan": "must"
+        },
+        "loved_restaurants": [
+          "Cafe Lift"
+        ],
+        "loves_text": "seafood, indian",
+        "dislikes_text": "fast food"
+      }
+    ]
+  },
+  {
+    "group_id": "E01",
+    "note": "everyone skipped",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "E02",
+    "note": "one member skipped",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Thai",
+          "Korean"
+        ],
+        "vibes": [
+          "Casual"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "thai, korean, casual",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Pizza"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "pizza",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "E03",
+    "note": "halal is a must for one member (filters the whole group)",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Indian",
+          "BBQ"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {
+          "halal": "must"
+        },
+        "loved_restaurants": [],
+        "loves_text": "indian, bbq",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Mexican"
+        ],
+        "vibes": [
+          "Lively"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "burgers, mexican, lively",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Chinese"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "chinese",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "E04",
+    "note": "clashing tastes: sushi lover + avoids seafood",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Sushi",
+          "Seafood"
+        ],
+        "vibes": [
+          "Trendy"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "sushi, seafood, trendy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Italian"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Seafood"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "italian",
+        "dislikes_text": "seafood"
+      }
+    ]
+  },
+  {
+    "group_id": "E05",
+    "note": "member answered nothing but didn't press skip",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Brunch",
+          "Coffee"
+        ],
+        "vibes": [
+          "Cozy"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "brunch, coffee, cozy",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "E06",
+    "note": "solo user",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks"
+        ],
+        "vibes": [
+          "Late night"
+        ],
+        "avoid": [],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "cheesesteaks, late night",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "E07",
+    "note": "big group of 6",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": true,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Korean",
+          "Thai",
+          "Seafood",
+          "Desserts"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "korean, thai, seafood, desserts",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Cheesesteaks",
+          "Desserts",
+          "Seafood"
+        ],
+        "vibes": [
+          "Trendy"
+        ],
+        "avoid": [
+          "Fast food"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "cheesesteaks, desserts, seafood, trendy",
+        "dislikes_text": "fast food"
+      },
+      {
+        "member": "Member 4",
+        "skipped": false,
+        "moods": [
+          "Italian",
+          "BBQ"
+        ],
+        "vibes": [
+          "Quiet"
+        ],
+        "avoid": [
+          "Loud",
+          "Seafood"
+        ],
+        "prices": [
+          1
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "McGillin's Olde Ale House",
+          "La Colombe Coffee"
+        ],
+        "loves_text": "italian, bbq, quiet",
+        "dislikes_text": "loud, seafood"
+      },
+      {
+        "member": "Member 5",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Brunch"
+        ],
+        "vibes": [
+          "Cocktails",
+          "Cozy"
+        ],
+        "avoid": [],
+        "prices": [],
+        "diets": {
+          "vegan": "must"
+        },
+        "loved_restaurants": [],
+        "loves_text": "burgers, brunch, cocktails, cozy",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 6",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "Chinese",
+          "Seafood"
+        ],
+        "vibes": [
+          "Cocktails",
+          "Cozy",
+          "Good for groups"
+        ],
+        "avoid": [
+          "Fast food",
+          "Loud"
+        ],
+        "prices": [
+          2,
+          3
+        ],
+        "diets": {},
+        "loved_restaurants": [
+          "Bahama Breeze"
+        ],
+        "loves_text": "burgers, chinese, seafood, cocktails, cozy, good for groups",
+        "dislikes_text": "fast food, loud"
+      }
+    ]
+  },
+  {
+    "group_id": "E08",
+    "note": "vegan is a must for one member",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Thai"
+        ],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {
+          "vegan": "must"
+        },
+        "loved_restaurants": [],
+        "loves_text": "thai",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Burgers",
+          "BBQ"
+        ],
+        "vibes": [],
+        "avoid": [
+          "Expensive"
+        ],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "burgers, bbq",
+        "dislikes_text": "expensive"
+      }
+    ]
+  },
+  {
+    "group_id": "E09",
+    "note": "only loved restaurants, no bubbles",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Reading Terminal Market",
+          "Pat's King of Steaks"
+        ],
+        "loves_text": "",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [],
+        "vibes": [],
+        "avoid": [],
+        "prices": [],
+        "diets": {},
+        "loved_restaurants": [
+          "Geno's Steaks",
+          "El Vez"
+        ],
+        "loves_text": "",
+        "dislikes_text": ""
+      }
+    ]
+  },
+  {
+    "group_id": "E10",
+    "note": "everyone wants the same thing (easy case)",
+    "members": [
+      {
+        "member": "Member 1",
+        "skipped": false,
+        "moods": [
+          "Pizza"
+        ],
+        "vibes": [
+          "Casual",
+          "Good for groups"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "pizza, casual, good for groups",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 2",
+        "skipped": false,
+        "moods": [
+          "Pizza"
+        ],
+        "vibes": [
+          "Casual",
+          "Good for groups"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "pizza, casual, good for groups",
+        "dislikes_text": ""
+      },
+      {
+        "member": "Member 3",
+        "skipped": false,
+        "moods": [
+          "Pizza"
+        ],
+        "vibes": [
+          "Casual",
+          "Good for groups"
+        ],
+        "avoid": [],
+        "prices": [
+          1,
+          2
+        ],
+        "diets": {},
+        "loved_restaurants": [],
+        "loves_text": "pizza, casual, good for groups",
+        "dislikes_text": ""
+      }
+    ]
+  }
+]
