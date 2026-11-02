@@ -3,7 +3,6 @@ Embed every recommendable restaurant in a city into one "taste vector".
 
 For each open restaurant with enough reviews, take its most recent LIKED reviews,
 embed each with a sentence-transformer, and average them into one vector.
-Liked reviews only, because low-star reviews are mostly about service (see EDA).
 """
 
 from pathlib import Path
