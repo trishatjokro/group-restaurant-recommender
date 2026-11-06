@@ -63,3 +63,20 @@ recommended only Chinese places**, so B was ignored.
 **Why:** some tastes match restaurants more strongly than others, so one person's scores dominate.
 **Next:** test score normalization (rank each person's scores before combining) on real
 friend pairs + mock 4-person groups.
+
+## 8. Which way of building the group vector works best? (Nov 6)
+**Tried:** 5 ways to combine members into one group vector: average, weighted
+(by how much each person told us), least-misery vector, anchored (average of the
+top 20 restaurants everyone rates OK), anchored + normalized (each person's scores
+ranked first).
+**Test 1, 2,000 real Yelp friend pairs** (hide their most recent shared favorite):
+average 0.9% hit@10 / 3.9% hit@50; weighted 1.1% / 3.8%; least misery = average
+(identical for 2 people); anchored 0.4% / 2.4%; anchored+normalized 0.3% / 2.1%;
+random 0.1% / 0.7%.
+**Test 2, 300 mock 4-person groups** (does everyone get ≥1 result that fits?):
+average 89% of members / 66% of groups with nobody left out; weighted same;
+least misery 87% / 61%; anchored 80% / 46%; anchored+normalized 84% / 54%.
+**Decision:** use the **average** (or weighted) group vector. The "smarter" vectors were
+worse: anchoring pulls the group toward generic restaurants.
+**Open problem:** in ~1 in 3 four-person groups someone is still left out; no single
+vector fixed this.
