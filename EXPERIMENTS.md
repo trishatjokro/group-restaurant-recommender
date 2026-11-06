@@ -120,3 +120,37 @@ current 24/16/7%, A 19/10/5%, B 27/14/7%. For 7+ people all versions are about e
 Chart: `results/equal_influence.png`
 **Decision:** build each person's vector with A (separate bubble descriptions); the group
 vector stays a simple average. B overcorrects and is dropped.
+
+## 12. Can we stop people being left out? (Nov 6)
+**Tried (person vectors built with A; same setup as #10–11):**
+(2) reweighting: rebuild the one group vector, giving more weight to anyone who got no result
+in their personal top 5%, up to 6 rounds; (4) coverage re-ranking: take the group vector's top
+50, then pick 5 so everyone is covered where possible. Both use only the model's own signals
+(never the cuisine tags used for grading).
+**Result:** small gains. Nobody left out (2 / 4 / 10 people): average 73/52/12%,
+reweighting 75/53/13%, coverage 75/53/18%. People served improved by 1–4 points.
+Chart: `results/left_out_methods.png`
+**Why small:** the model often thinks a person is covered when their actual cuisine picks
+aren't, so the bottleneck is the person vectors, not how the group is combined.
+**Decision:** keep the simple average group vector (best story; nothing beats it meaningfully
+for ≤4 people). Coverage re-ranking is future work for big groups. Improve person vectors
+(build option A into taste_profile.py) next.
+
+### Why we chose the average group vector in the end
+We tried six ways to combine a group into one vector (experiments 7, 8, 10, 11, 12):
+average, weighted, least-misery vector, anchored, anchored + normalized, and reweighting
+(plus coverage re-ranking after the vector). We chose the **plain average** because:
+1. **It performed best or tied for best in every test.** On 2,000 real Yelp friend pairs it found
+   the pair's shared favorite ~9× more often than random; the anchored methods were worse
+   (0.3–0.4% vs 0.9–1.1% hit@10), and the least-misery vector was worse for groups of 4+
+   (e.g. 75% vs 69% of people served at 5 people).
+2. **The "smarter" methods didn't fix the real problem.** Reweighting and coverage re-ranking
+   added only 1–2 points for the demo's group sizes (2–4), within the confidence intervals.
+3. **The biggest improvement came from better person vectors, not a fancier combination.**
+   Embedding each bubble separately (experiment 11) raised "nobody left out" by 6–12 points,
+   far more than any aggregation method.
+4. **It's simple to explain and defend:** "we combine everyone's taste vectors into one
+   group vector by averaging, then compare it with every restaurant."
+5. **Its known limitation is honest and measurable:** with very different tastes (e.g. Chinese +
+   burgers) the average can land between them; for big groups, coverage re-ranking is the
+   most promising fix (+6 points "nobody left out" at 10 people).
