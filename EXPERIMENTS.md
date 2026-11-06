@@ -80,3 +80,15 @@ least misery 87% / 61%; anchored 80% / 46%; anchored+normalized 84% / 54%.
 worse: anchoring pulls the group toward generic restaurants.
 **Open problem:** in ~1 in 3 four-person groups someone is still left out; no single
 vector fixed this.
+
+## 9. Looking at real examples of group recommendations (Nov 6)
+**Tried:** Ran the average group vector on example mock groups of 2, 3 and 4 and read the results.
+**Found:** (a) When tastes overlap (3 people who all like sandwiches), results fit everyone.
+(b) Midpoint problem confirmed: American/Italian + Korean/Japanese → Mexican and Middle
+Eastern places neither person asked for. (c) A person who taps ONE bubble dominates
+people who tap many: their vector is sharper, so a 4-person group got 5 Vietnamese places
+for the one Vietnamese fan, and the Italian/Indian/pizza fan got nothing.
+(d) Our automatic "does it fit?" check was too lenient (loose review keywords), so
+experiment 8's "nobody left out" rates are too optimistic.
+**Next:** make the fit check stricter; then test giving every person equal influence
+regardless of how many bubbles they tap.
