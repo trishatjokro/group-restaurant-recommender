@@ -106,3 +106,17 @@ Performance falls as groups grow; for the demo's max of 4, ~3 in 4 people get a 
 **Caveats:** random strangers are a harsh test (real friends overlap more); random restaurants
 already score well because common tags (sandwiches, pizza) are everywhere, so the model's
 value is the ~13-point gap over random.
+
+## 11. Giving every person equal influence (Nov 6)
+**Problem:** people who tap one bubble have sharp vectors and dominate people who tap many
+(experiment 9).
+**Tried (same setup as #10, 2–10 people, strict fit, bootstrap CIs):**
+current (all bubbles joined into one text) vs. A (each bubble's description embedded
+separately, then averaged per person) vs. B (A, then each person "sharpened" toward their
+own top-20 restaurants). Also measured how often one person gets ≥4 of 5 results to themselves.
+**Result (groups of 2 / 3 / 4):** people served: current 79/79/76%, A 84/85/79%, B 81/83/76%.
+Nobody left out: current 67/57/46%, A 73/69/52%, B 70/65/45%. One person takes over:
+current 24/16/7%, A 19/10/5%, B 27/14/7%. For 7+ people all versions are about equal.
+Chart: `results/equal_influence.png`
+**Decision:** build each person's vector with A (separate bubble descriptions); the group
+vector stays a simple average. B overcorrects and is dropped.
