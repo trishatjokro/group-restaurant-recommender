@@ -92,3 +92,17 @@ for the one Vietnamese fan, and the Italian/Indian/pizza fan got nothing.
 experiment 8's "nobody left out" rates are too optimistic.
 **Next:** make the fit check stricter; then test giving every person equal influence
 regardless of how many bubbles they tap.
+
+## 10. Accuracy by group size, with bootstrap confidence intervals (Nov 6)
+**Tried:** 400 random groups per size (2–10 people, anyone with anyone) from the 1,000 mock
+users; top 5 results; STRICT fit check (a result fits a person only if its Yelp cuisine tag
+matches one of their picks); 95% CIs from 1,000 bootstrap resamples.
+**Result:** people with ≥1 fitting result: average 79% (size 2) → 65% (size 10);
+least misery 79% → 60%; random restaurants 66% → 58%. Groups where nobody is left out:
+average 67% → 13%; least misery 67% → 11%; random 52% → 6%.
+Chart: `results/group_size_accuracy.png`
+**Decision:** the average group vector is best at every size (clearly so for 5–9 people).
+Performance falls as groups grow; for the demo's max of 4, ~3 in 4 people get a matching result.
+**Caveats:** random strangers are a harsh test (real friends overlap more); random restaurants
+already score well because common tags (sandwiches, pizza) are everywhere, so the model's
+value is the ~13-point gap over random.
