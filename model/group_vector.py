@@ -45,7 +45,7 @@ def _least_misery_vector(U):
     return g
 
 
-def group_vector(members, restaurants, method="anchored", weights=None):
+def group_vector(members, restaurants, method="average", weights=None):
     """members: list of taste profiles from build_taste_profile().
     restaurants: the restaurant_vectors table.
     Returns {"vector": group vector, "dislikes": group dislikes vector or None}."""
