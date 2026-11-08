@@ -154,3 +154,12 @@ average, weighted, least-misery vector, anchored, anchored + normalized, and rew
 5. **Its known limitation is honest and measurable:** with very different tastes (e.g. Chinese +
    burgers) the average can land between them; for big groups, coverage re-ranking is the
    most promising fix (+6 points "nobody left out" at 10 people).
+
+## 13. Built option A into taste_profile.py (Nov 7)
+**Change:** `build_taste_profile()` now takes `bubbles=[...]` (tapped bubbles); each is embedded
+from its own short description (24 in `BUBBLE_DESCRIPTIONS`) and averaged with typed text,
+loved restaurants and diet preferences. Typed text still goes in `loves_text`.
+**Why:** experiment 11 (biggest measured gain: +6–12 points "nobody left out" for 2–4 people).
+**Checked:** old calls unchanged; unknown bubbles fall back to their own name; group_vector works.
+**Noticed:** overlapping picks count twice (Italian + Pizza outweigh Vietnamese), which is
+reasonable, but worth knowing.
