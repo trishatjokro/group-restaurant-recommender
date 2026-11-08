@@ -23,6 +23,38 @@ DIET_PHRASES = {                  # added to likes when a diet is "prefer"
 }
 DIET_BONUS = 0.03                 # small boost for tagged places when a diet is "prefer"
 
+# Each tapped bubble is embedded as its own short description (experiment 11):
+# richer text matches better than one word, and embedding each pick separately
+# stops someone who taps many bubbles from being drowned out.
+BUBBLE_DESCRIPTIONS = {
+    # cravings (cuisines)
+    "French": "French food: crepes, croissants, steak frites and bistro dishes",
+    "Japanese": "Japanese food: sushi, ramen, udon and tempura",
+    "Thai": "Thai food: pad thai, green curry and tom yum",
+    "Korean": "Korean food: Korean BBQ, bibimbap and kimchi",
+    "Indian": "Indian food: curry, naan, tikka masala and biryani",
+    "American (New)": "New American restaurant with seasonal small plates",
+    "Italian": "Italian food: pasta, risotto and pizza",
+    "American (Traditional)": "classic American food: burgers, fries and comfort food",
+    "Mediterranean": "Mediterranean food: hummus, falafel, gyros and kebabs",
+    "Chinese": "Chinese food: dumplings, lo mein, fried rice and dim sum",
+    "Vietnamese": "Vietnamese food: pho, banh mi and vermicelli",
+    "Mexican": "Mexican food: tacos, burritos and guacamole",
+    # anything specific (food types)
+    "Sandwiches": "sandwiches, hoagies and subs",
+    "Pizza": "pizza by the slice or whole pie",
+    "Breakfast & Brunch": "breakfast and brunch: pancakes, eggs benedict and omelets",
+    "Fast Food": "quick fast food and drive-thru",
+    "Burgers": "juicy burgers and fries",
+    "Coffee & Tea": "coffee shop with lattes, espresso and tea",
+    "Seafood": "seafood: oysters, crab, shrimp and fresh fish",
+    "Cafes": "cozy cafe with coffee and pastries",
+    "Salad": "fresh salads and grain bowls",
+    "Delis": "deli with pastrami, corned beef and hoagies",
+    "Chicken": "fried chicken and chicken wings",
+    "Cheesesteak": "Philly cheesesteaks",
+}
+
 _model = None
 
 
@@ -38,8 +70,11 @@ def _normalize(v):
 
 
 def build_taste_profile(restaurants, loves_text="", loved_names=(), dislikes_text="",
-                        prices=(), diets=None):
+                        prices=(), diets=None, bubbles=()):
     """restaurants: the restaurant_vectors table. Returns a dict describing one person.
+    loves_text: anything the person TYPED (e.g. "I'm craving spicy noodles").
+    bubbles: the bubbles they TAPPED (e.g. ["Japanese", "Pizza"]); each is embedded
+             separately using BUBBLE_DESCRIPTIONS. Don't also put tapped bubbles in loves_text.
     diets: e.g. {"halal": "must", "vegan": "prefer"}; empty = no restriction."""
     model = get_model()
     V = np.vstack(restaurants["vector"].values)
@@ -47,6 +82,9 @@ def build_taste_profile(restaurants, loves_text="", loved_names=(), dislikes_tex
     like_parts = []
     if loves_text.strip():
         like_parts.append(model.encode(loves_text, normalize_embeddings=True))
+    for bubble in bubbles:
+        like_parts.append(model.encode(BUBBLE_DESCRIPTIONS.get(bubble, bubble),
+                                       normalize_embeddings=True))
     picked = restaurants.index[restaurants["name"].isin(loved_names)]
     like_parts += [V[i] for i in picked]
     diets = diets or {}
