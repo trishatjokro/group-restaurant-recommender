@@ -11,8 +11,8 @@ import numpy as np
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 
-CITY = "philadelphia" # sample
-FOLDER = Path("data") / "cities" / CITY
+ROOT = Path(__file__).resolve().parents[1]
+FOLDER = ROOT / "data" / "output"
 
 MODEL_NAME = "all-MiniLM-L6-v2"  # 384 numbers per text, reads up to 256 tokens
 MIN_REVIEWS = 15                 # EDA decision: fewer reviews = unreliable vector
