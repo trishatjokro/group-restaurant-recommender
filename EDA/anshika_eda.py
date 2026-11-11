@@ -45,6 +45,21 @@ plt.xlabel("Words per review")
 plt.legend()
 plt.show()
 
+# WORD COUNTING
+
+STOP = set(ENGLISH_STOP_WORDS) | {"place", "restaurant", "food", "ordered", "order",
+                                   "got", "went", "came", "get", "one"}
+
+def top_words(texts, n=15):
+    counts = Counter()
+    for t in texts:
+        if isinstance(t, str):
+            counts.update(w for w in re.findall(r"[a-z]+(?:'[a-z]+)?", t.lower())
+                          if len(w) > 2 and w not in STOP)
+    return counts.most_common(n)
+
+sample = reviews.sample(min(SAMPLE_SIZE, len(reviews)), random_state=42)
+
 # MOST COMMON WORDS BY STAR RATING
 
 stars = sorted(sample["star_group"].unique())

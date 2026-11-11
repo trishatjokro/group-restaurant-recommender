@@ -2,7 +2,6 @@
 # print(os.getcwd())
 
 import pandas as pd
-from rapidfuzz import process,fuzz
 
 def check_stars(df):
     print("Missing stars:", df["stars"].isna().sum())
@@ -78,7 +77,7 @@ def clean_city(df):
         "North Redngtn Beach": "North Redington Beach",
         "Redington Shore": "Redington Shores",
         "Redingtn Shor": "Redington Shores",
-        "W Cherry Hill": "Cherry Hill",
+        "W. Cherry Hill": "Cherry Hill",
         "Town N Country": "Town and Country",
         "Town & Country": "Town and Country",
         "Town 'N' Country": "Town and Country",

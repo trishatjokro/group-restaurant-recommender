@@ -8,12 +8,19 @@ from data.clean.duplicates import clean_duplicates
 from data.clean.filters import filter_reviews
 
 DATA = Path("data")
-OUTPUT = DATA / "output"
+CITY = None  # e.g. "nashville" to clean that city from data/cities/; None = the sample
 
 
 def main():
-    reviews = pd.read_parquet(DATA / "reviews_sample.parquet")
-    restaurants = pd.read_parquet(DATA / "restaurants_sample.parquet")
+    if CITY:
+        source = DATA / "cities" / CITY
+        reviews = pd.read_parquet(source / "reviews.parquet")
+        restaurants = pd.read_parquet(source / "restaurants.parquet")
+        output = source                     # cleaned files go next to the raw ones
+    else:
+        reviews = pd.read_parquet(DATA / "reviews_sample.parquet")
+        restaurants = pd.read_parquet(DATA / "restaurants_sample.parquet")
+        output = DATA / "output"
     restaurants_all = pd.read_parquet(DATA / "restaurants_all.parquet")
     print(f"Loaded {len(reviews):,} reviews, {len(restaurants):,} restaurants\n")
 
@@ -31,13 +38,13 @@ def main():
     restaurants = clean_city(restaurants)         # Gisella: adds city_clean
 
     # --- Save --------------------------------------------------------------
-    OUTPUT.mkdir(exist_ok=True)
-    reviews.to_parquet(OUTPUT / "reviews_clean.parquet", index=False)
-    restaurants.to_parquet(OUTPUT / "restaurants_clean.parquet", index=False)
+    output.mkdir(exist_ok=True)
+    reviews.to_parquet(output / "reviews_clean.parquet", index=False)
+    restaurants.to_parquet(output / "restaurants_clean.parquet", index=False)
 
     print(f"\nReviews: {n_start:,} -> {len(reviews):,} "
           f"({n_start - len(reviews):,} removed)")
-    print(f"Saved to {OUTPUT}/")
+    print(f"Saved to {output}/")
 
 
 if __name__ == "__main__":
