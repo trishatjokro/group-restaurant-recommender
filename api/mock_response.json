@@ -1,0 +1,79 @@
+{
+    "results": [
+        {
+            "name": "Tampopo",
+            "categories": "Sushi Bars, Restaurants, Japanese, Korean",
+            "price": "$$",
+            "stars": 3.5,
+            "address": "269 S 44th St",
+            "match_pct": 100,
+            "best_fit_for": "Gisella",
+            "member_fit": {
+                "Trisha": 99,
+                "Gisella": 100
+            },
+            "reason": "Fits Trisha's picks: Japanese; Fits Gisella's picks: Korean",
+            "label": null
+        },
+        {
+            "name": "Seorabol Center City",
+            "categories": "Korean, Restaurants, Soup, Asian Fusion, Barbeque, Sushi Bars, Nightlife, Cocktail Bars, Bars",
+            "price": "$$",
+            "stars": 4.0,
+            "address": "1326 Spruce St",
+            "match_pct": 100,
+            "best_fit_for": "Gisella",
+            "member_fit": {
+                "Trisha": 96,
+                "Gisella": 100
+            },
+            "reason": "Fits Trisha's picks: Japanese; Fits Gisella's picks: Korean",
+            "label": null
+        },
+        {
+            "name": "Jian Korean Cuisine",
+            "categories": "Restaurants, Korean",
+            "price": "$",
+            "stars": 3.5,
+            "address": "7050 Terminal Sq, Ste 215",
+            "match_pct": 100,
+            "best_fit_for": "Gisella",
+            "member_fit": {
+                "Trisha": 95,
+                "Gisella": 100
+            },
+            "reason": "Fits Gisella's picks: Korean",
+            "label": null
+        },
+        {
+            "name": "Rice & Mix",
+            "categories": "Restaurants, Korean",
+            "price": "$$",
+            "stars": 3.5,
+            "address": "128 S 12th St",
+            "match_pct": 100,
+            "best_fit_for": "Gisella",
+            "member_fit": {
+                "Trisha": 94,
+                "Gisella": 100
+            },
+            "reason": "Fits Gisella's picks: Korean",
+            "label": null
+        },
+        {
+            "name": "KO Modern Korean Cuisine",
+            "categories": "Restaurants, Pan Asian, Asian Fusion, Korean",
+            "price": "$$",
+            "stars": 4.0,
+            "address": "2817 S Eagle Rd",
+            "match_pct": 100,
+            "best_fit_for": "Gisella",
+            "member_fit": {
+                "Trisha": 97,
+                "Gisella": 99
+            },
+            "reason": "Fits Gisella's picks: Korean",
+            "label": null
+        }
+    ]
+}
