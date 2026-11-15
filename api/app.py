@@ -56,9 +56,11 @@ class Request(BaseModel):
 
 
 def percentile(scores, ok):
-    """0–100: how high each restaurant ranks among the allowed ones."""
-    s = np.where(ok, scores, -np.inf)
-    return (s.argsort().argsort() - (~ok).sum()) / max(ok.sum() - 1, 1) * 100
+    """0–100 match %: 100 = as good as the best allowed restaurant, 50 = a typical one.
+    (A plain rank percentile put every top result at ~100%, which told users nothing.)"""
+    best, typical = scores[ok].max(), np.median(scores[ok])
+    pct = 50 + 50 * (scores - typical) / max(best - typical, 1e-9)
+    return np.clip(pct, 0, 100)
 
 
 @app.post("/recommend")
