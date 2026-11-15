@@ -7,10 +7,10 @@
             "stars": 3.5,
             "address": "269 S 44th St",
             "match_pct": 100,
-            "best_fit_for": "Gisella",
+            "best_fit_for": "Trisha",
             "member_fit": {
-                "Trisha": 99,
-                "Gisella": 100
+                "Trisha": 91,
+                "Gisella": 89
             },
             "reason": "Fits Trisha's picks: Japanese; Fits Gisella's picks: Korean",
             "label": null
@@ -21,11 +21,11 @@
             "price": "$$",
             "stars": 4.0,
             "address": "1326 Spruce St",
-            "match_pct": 100,
+            "match_pct": 98,
             "best_fit_for": "Gisella",
             "member_fit": {
-                "Trisha": 96,
-                "Gisella": 100
+                "Trisha": 82,
+                "Gisella": 96
             },
             "reason": "Fits Trisha's picks: Japanese; Fits Gisella's picks: Korean",
             "label": null
@@ -36,11 +36,11 @@
             "price": "$",
             "stars": 3.5,
             "address": "7050 Terminal Sq, Ste 215",
-            "match_pct": 100,
+            "match_pct": 96,
             "best_fit_for": "Gisella",
             "member_fit": {
-                "Trisha": 95,
-                "Gisella": 100
+                "Trisha": 79,
+                "Gisella": 93
             },
             "reason": "Fits Gisella's picks: Korean",
             "label": null
@@ -51,11 +51,11 @@
             "price": "$$",
             "stars": 3.5,
             "address": "128 S 12th St",
-            "match_pct": 100,
+            "match_pct": 96,
             "best_fit_for": "Gisella",
             "member_fit": {
-                "Trisha": 94,
-                "Gisella": 100
+                "Trisha": 76,
+                "Gisella": 97
             },
             "reason": "Fits Gisella's picks: Korean",
             "label": null
@@ -66,11 +66,11 @@
             "price": "$$",
             "stars": 4.0,
             "address": "2817 S Eagle Rd",
-            "match_pct": 100,
-            "best_fit_for": "Gisella",
+            "match_pct": 96,
+            "best_fit_for": "Trisha",
             "member_fit": {
-                "Trisha": 97,
-                "Gisella": 99
+                "Trisha": 85,
+                "Gisella": 85
             },
             "reason": "Fits Gisella's picks: Korean",
             "label": null
