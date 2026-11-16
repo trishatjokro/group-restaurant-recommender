@@ -22,28 +22,24 @@ N_USERS = 1_000
 VECTORS = Path("data") / "cities" / "philadelphia" / "restaurant_vectors.parquet"
 OUT = Path("data") / "mock" / "mock_users.json"
 
-MOODS = ["Pizza", "Sushi", "Cheesesteaks", "Chinese", "Mexican", "Italian", "Thai", "Indian",
-         "Korean", "Brunch", "Burgers", "BBQ", "Seafood", "Desserts", "Coffee"]
-VIBES = ["Cozy", "Casual", "Trendy", "Romantic", "Lively", "Quiet", "Outdoor seating",
-         "Good for groups", "Late night", "Cocktails"]
+CUISINES = ["French", "Japanese", "Thai", "Korean", "Indian", "American (New)", "American (Traditional)","Italian", "Mediterranean", "Chinese", "Vietnamese", "Mexican"]
+FOODS = ["Sandwiches", "Pizza", "Breakfast & Brunch","Fast Food", "Burgers", "Coffee & Tea","Seafood", "Cafes", "Salad", "Delis","Chicken", "Cheesesteak"]
+BUDGET=["$","$$","$$$"]
 AVOID = ["Seafood", "Spicy", "Loud", "Long waits", "Fast food", "Chains", "Expensive"]
 DIETS = ["vegetarian", "vegan", "halal", "gluten-free"]
 
 rng = random.Random(SEED)
 
 
-def user(user_id, moods=(), vibes=(), avoid=(), prices=(), diets=None, loved=(), skipped=False):
+def user(user_id, cuisines=(), foods=(), avoid=(), prices=(), diets=None, skipped=False):
     return {
         "user_id": user_id,
         "skipped": skipped,
-        "moods": list(moods),
-        "vibes": list(vibes),
+        "cuisines": list(cuisines),
+        "foods": list(foods),
         "avoid": list(avoid),
         "prices": list(prices),
         "diets": diets or {},
-        "loved_restaurants": list(loved),
-        "loves_text": ", ".join(b.lower() for b in [*moods, *vibes]),
-        "dislikes_text": ", ".join(b.lower() for b in avoid),
     }
 
 
@@ -60,12 +56,12 @@ def random_user(user_id, popular):
         diets[rng.choice(DIETS)] = rng.choice(["must", "prefer"])
     return user(
         user_id,
-        moods=rng.sample(MOODS, rng.randint(1, 4)),
-        vibes=rng.sample(VIBES, rng.randint(0, 3)),
+        user_id,
+        cuisines=rng.sample(CUISINES, rng.randint(0, 4)),
+        foods=rng.sample(FOODS, rng.randint(0, 3)),
         avoid=rng.sample(AVOID, rng.randint(0, 2)),
         prices=sorted(rng.sample([1, 2, 3], rng.randint(0, 2))),
         diets=diets,
-        loved=rng.sample(popular, rng.randint(0, 3)),
     )
 
 
