@@ -80,7 +80,7 @@ def _normalize(v):
 
 def build_taste_profile(restaurants, cuisines=(), foods=(),
                         avoid=(), prices=(), diets=None,
-                        loved_names=(), bubbles=()):
+                        loved_names=()):
     """restaurants: the restaurant_vectors table. Returns a dict describing one person.
     bubbles: the bubbles they TAPPED (e.g. ["Japanese", "Pizza"]); each is embedded
              separately using BUBBLE_DESCRIPTIONS. Don't also put tapped bubbles in loves_text.
@@ -97,11 +97,6 @@ def build_taste_profile(restaurants, cuisines=(), foods=(),
         )
 
     # Previously loved restaurants
-    if loves_text.strip():
-        like_parts.append(model.encode(loves_text, normalize_embeddings=True))
-    for bubble in bubbles:
-        like_parts.append(model.encode(BUBBLE_DESCRIPTIONS.get(bubble, bubble),
-                                       normalize_embeddings=True))
     picked = restaurants.index[restaurants["name"].isin(loved_names)]
     like_parts += [V[i] for i in picked]
 
@@ -122,9 +117,9 @@ def build_taste_profile(restaurants, cuisines=(), foods=(),
 
     return {
         "likes": _normalize(np.mean(like_parts, axis=0)) if like_parts else None,
-        "dislikes": (model.encode(dislikes_text, normalize_embeddings=True)
-                     if dislikes_text.strip() else None),
-        "visited": set(restaurants.loc[picked, "business_id"]),
+        "dislikes": _normalize(np.mean(dislike_parts, axis=0))
+            if dislike_parts else None,
+        "visited": set(restaurants.loc[picked_mask, "business_id"]),
         "prices": set(prices),     # e.g. {1, 2} for $ and $$; empty = any price
         "diets_must": {d for d, m in diets.items() if m == "must"},
         "diets_prefer": {d for d, m in diets.items() if m == "prefer"},
