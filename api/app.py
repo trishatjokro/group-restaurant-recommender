@@ -1,9 +1,15 @@
 """
-Palate API: the React app sends a group's answers, we return the top restaurants.
+Palate API: the app sends a group's answers, we return the top restaurants.
 Uses taste_profile.py (each person) + group_vector.py (average group vector).
 Run from the repo's top folder:  .venv/bin/python -m uvicorn api.app:app --port 8000
+
+Dietary needs are a MUST (only restaurants tagged with that diet), "avoid" is a soft
+preference (unusually close places are pushed down, never removed). If too few places
+pass the filters, diets and then budgets are relaxed, the same way the app's
+on-device fallback does it.
 """
 
+import unicodedata
 from pathlib import Path
 
 import numpy as np
@@ -16,6 +22,8 @@ from model.group_vector import group_vector
 from model.taste_profile import allowed, build_taste_profile, score_restaurants
 
 DATA = Path("data") / "cities" / "philadelphia"
+AVOID_WEIGHT = 1.0       # how hard "avoid" pushes places down (tested Nov 16: removes avoided places, keeps the rest)
+NO_DIET = "none"
 BUBBLE_TAGS = {  # Yelp categories that count as "fits" a bubble (for reasons/labels only)
     "French": "French", "Japanese": "Japanese|Sushi|Ramen", "Thai": "Thai", "Korean": "Korean",
     "Indian": "Indian|Pakistani|Himalayan", "American (New)": r"American \(New\)", "Italian": "Italian",
@@ -35,7 +43,10 @@ V = np.vstack(restaurants["vector"].values)
 price = pd.to_numeric(restaurants["attributes"].str.extract(r'"RestaurantsPriceRange2": "(\d)"')[0], errors="coerce")
 
 app = FastAPI(title="Palate API")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://localhost:3000"],
+app.add_middleware(CORSMiddleware,
+                   allow_origins=["http://localhost:5173", "http://localhost:3000",     # React dev servers
+                                  "http://localhost:8081", "http://127.0.0.1:8081",     # Expo web (palate/)
+                                  "http://localhost:19006"],
                    allow_methods=["*"], allow_headers=["*"])
 
 
@@ -48,6 +59,7 @@ class Member(BaseModel):
     avoid_other: str = ""
     loved_restaurants: list[str] = []
     prices: list[int] = []
+    diets: list[str] = []          # e.g. ["halal"]; always treated as "must"
 
 
 class Request(BaseModel):
@@ -63,6 +75,23 @@ def percentile(scores, ok):
     return np.clip(pct, 0, 100)
 
 
+def chain_key(name):
+    """Same chain at different locations ("Nudy's Café - West Chester" / "Nudy's Cafe - Chadds Ford")."""
+    n = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower()
+    return n.split(" - ")[0].strip()
+
+
+def allowed_for_group(profiles, relax):
+    """'strict' = budgets + must-diets; 'relaxDiet' = budgets only; 'relaxAll' = everything."""
+    if relax == "relaxAll":
+        return np.ones(len(restaurants), dtype=bool)
+    ok = np.ones(len(restaurants), dtype=bool)
+    for p in profiles:
+        q = dict(p, diets_must=set()) if relax == "relaxDiet" else p
+        ok &= allowed(q, restaurants)
+    return ok
+
+
 @app.post("/recommend")
 def recommend(req: Request):
     members = [m for m in req.members]
@@ -72,22 +101,35 @@ def recommend(req: Request):
             profiles.append(build_taste_profile(restaurants))
             continue
         avoid = ", ".join([a.replace(" ($$$)", "") for a in m.avoid] + ([m.avoid_other] if m.avoid_other else []))
+        diets = {d.lower(): "must" for d in m.diets if d.lower() != NO_DIET}
         profiles.append(build_taste_profile(restaurants, loves_text=m.loves_text, bubbles=m.bubbles,
                                             loved_names=m.loved_restaurants, dislikes_text=avoid,
-                                            prices=m.prices))
-    g = group_vector(profiles, restaurants)["vector"]
+                                            prices=m.prices, diets=diets))
+    combined = group_vector(profiles, restaurants)
+    g, group_dislikes = combined["vector"], combined["dislikes"]
 
-    ok = np.logical_and.reduce([allowed(p, restaurants) for p in profiles])
-    ok &= ~restaurants["business_id"].isin(set().union(*[p["visited"] for p in profiles])).values
-    group_pct = percentile(V @ g, ok)
+    visited = restaurants["business_id"].isin(set().union(*[p["visited"] for p in profiles])).values
+    for relaxed in ("strict", "relaxDiet", "relaxAll"):
+        ok = allowed_for_group(profiles, relaxed) & ~visited
+        if ok.sum() >= req.top_k:
+            break
+
+    score = V @ g
+    if group_dislikes is not None:              # "avoid": push down only places unusually close to it
+        dsim = V @ group_dislikes
+        score = score - AVOID_WEIGHT * np.maximum(0, dsim - np.median(dsim[ok]))
+    group_pct = percentile(score, ok)
     member_pct = {m.name: percentile(score_restaurants(p, restaurants), ok)
                   for m, p in zip(members, profiles) if p["likes"] is not None}
 
     results, seen = [], set()
-    for j in np.argsort(-np.where(ok, V @ g, -np.inf)):
-        if not ok[j] or restaurants.at[j, "name"] in seen:
+    for j in np.argsort(-np.where(ok, score, -np.inf)):
+        if not ok[j]:
+            break
+        key = chain_key(restaurants.at[j, "name"])
+        if key in seen:
             continue
-        seen.add(restaurants.at[j, "name"])
+        seen.add(key)
         cats = restaurants.at[j, "categories"] or ""
         fits = {m.name: [b for b in m.bubbles if b in BUBBLE_TAGS and pd.Series([cats]).str.contains(BUBBLE_TAGS[b]).iloc[0]]
                 for m in members if not m.skipped}
@@ -95,9 +137,14 @@ def recommend(req: Request):
         tapped = sorted({b for m in members for b in m.bubbles})
         fit = {n: int(round(member_pct[n][j])) for n in member_pct}
         results.append({
+            "id": restaurants.at[j, "business_id"],
             "name": restaurants.at[j, "name"], "categories": cats,
+            "categories_list": [c.strip() for c in cats.split(",") if c.strip() and c.strip() != "Restaurants"],
             "price": "$" * int(price[j]) if not np.isnan(price[j]) else None,
+            "price_level": None if np.isnan(price[j]) else int(price[j]),
             "stars": float(restaurants.at[j, "stars"]), "address": restaurants.at[j, "address"],
+            "reviews": int(restaurants.at[j, "n_reviews"]),
+            "lat": float(restaurants.at[j, "latitude"]), "lng": float(restaurants.at[j, "longitude"]),
             "match_pct": int(round(group_pct[j])),
             "best_fit_for": max(fit, key=fit.get) if fit else None,
             "member_fit": fit,
@@ -107,7 +154,7 @@ def recommend(req: Request):
         })
         if len(results) == req.top_k:
             break
-    return {"results": results}
+    return {"results": results, "relaxed": relaxed}
 
 
 @app.get("/search")
