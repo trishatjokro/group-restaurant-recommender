@@ -177,3 +177,80 @@ export function joinWords(items: string[]) {
 }
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// ---------------------------------------------------------------------------
+// ADDED (Trisha): use the real Python model (SBERT taste vectors + group vector)
+// through the API in api/app.py. If the server isn't running, fall back to the
+// on-device getRecommendations() above, so the app never breaks.
+// Start the server from the repo root:  .venv/bin/python -m uvicorn api.app:app --port 8000
+// ---------------------------------------------------------------------------
+
+export const API_URL = 'http://localhost:8000'; // ADDED (Trisha): same laptop as the demo
+
+type ApiResult = {
+  id: string;
+  name: string;
+  address: string;
+  stars: number;
+  reviews: number;
+  price_level: number | null;
+  categories_list: string[];
+  lat: number;
+  lng: number;
+  match_pct: number;
+  member_fit: Record<string, number>;
+  reason: string | null;
+  label: string | null;
+};
+
+// ADDED (Trisha): restaurants + scores that came from the API, so getRestaurantAny()
+// and the "Why this match?" screen can find them (the API knows all 7,021 places,
+// restaurants.json only has 1,000).
+const apiRestaurants = new Map<string, Restaurant>();
+const apiExtras = new Map<string, { matchPct: number; memberFit: Record<string, number>; reason: string | null; label: string | null }>();
+
+// ADDED (Trisha): like getRestaurant(), but also finds restaurants returned by the API.
+export function getRestaurantAny(id: string) {
+  return apiRestaurants.get(id) ?? getRestaurant(id);
+}
+
+// ADDED (Trisha): the model's group % / per-person % for a restaurant, if it came from the API.
+export function getApiExtras(id: string) {
+  return apiExtras.get(id);
+}
+
+// ADDED (Trisha): ask the Python model first; fall back to on-device matching.
+export async function getRecommendationsAsync(people: Participant[], minResults = 5): Promise<Recommendations & { source: 'model' | 'on-device' }> {
+  try {
+    const res = await fetch(`${API_URL}/recommend`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        top_k: 25, // results screen shows 5 at a time
+        members: people.map((p) => ({
+          name: p.name,
+          skipped: !p.cuisines.length && !p.specifics.length,
+          bubbles: [...p.cuisines, ...p.specifics],
+          prices: p.prices,
+          diets: dietsOf(p), // section 4: always "must"
+          avoid: p.avoids, // section 5: soft push-down
+        })),
+      }),
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const data: { results: ApiResult[]; relaxed: Strictness } = await res.json();
+    if (data.results.length < minResults) throw new Error('too few results');
+    const ranked: Ranked[] = data.results.map((r) => {
+      const restaurant: Restaurant = {
+        id: r.id, name: r.name, address: r.address, stars: r.stars, reviews: r.reviews,
+        price: r.price_level, categories: r.categories_list, lat: r.lat, lng: r.lng,
+      };
+      apiRestaurants.set(r.id, restaurant);
+      apiExtras.set(r.id, { matchPct: r.match_pct, memberFit: r.member_fit, reason: r.reason, label: r.label });
+      return { restaurant, score: r.match_pct / 100 };
+    });
+    return { ranked, relaxed: data.relaxed, source: 'model' };
+  } catch {
+    return { ...getRecommendations(people, minResults), source: 'on-device' };
+  }
+}
