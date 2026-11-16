@@ -6,13 +6,13 @@ import { Duck, Popper } from '@/components/palate/duck';
 import { OutlineButton } from '@/components/palate/ui';
 import { Colors, Fonts } from '@/constants/palette';
 import { goHome } from '@/lib/nav';
-import { getRestaurant } from '@/lib/recommend';
+import { getRestaurantAny } from '@/lib/recommend'; // CHANGED (Trisha): also finds restaurants returned by the model
 import { useSession } from '@/lib/session';
 
 // "Everyone has chosen" confirmation screen.
 export default function Completed() {
   const { session } = useSession();
-  const r = session?.chosenId ? getRestaurant(session.chosenId) : undefined;
+  const r = session?.chosenId ? getRestaurantAny(session.chosenId) : undefined; // CHANGED (Trisha)
   if (!session || !r) return <Redirect href="/home" />;
 
   const count = session.participants.length;
