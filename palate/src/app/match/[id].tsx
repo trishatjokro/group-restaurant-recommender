@@ -3,14 +3,15 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { GhostButton } from '@/components/palate/ui';
 import { Colors, Fonts } from '@/constants/palette';
-import { explainMatch, getRestaurant, groupScore } from '@/lib/recommend';
+import { explainMatch, getApiExtras, getRestaurantAny, groupScore } from '@/lib/recommend'; // CHANGED (Trisha): API-aware lookups
 import { useSession } from '@/lib/session';
 
 // "Why this Match?" sheet (Flowchart 5).
 export default function WhyThisMatch() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { session } = useSession();
-  const r = getRestaurant(id);
+  const r = getRestaurantAny(id); // CHANGED (Trisha): also finds restaurants returned by the model
+  const extras = getApiExtras(id); // ADDED (Trisha): the model's group % and per-person %, if available
 
   if (!session || !r) {
     return (
@@ -28,7 +29,10 @@ export default function WhyThisMatch() {
     <ScrollView style={{ backgroundColor: Colors.white }} contentContainerStyle={styles.sheet}>
       <Text style={styles.kicker}>WHY THIS MATCH?</Text>
       <Text style={styles.title}>{r.name}</Text>
-      <Text style={styles.group}>{Math.round(groupScore(people, r) * 100)}% group match</Text>
+      {/* CHANGED (Trisha): use the model's % when the result came from the API */}
+      <Text style={styles.group}>{extras ? extras.matchPct : Math.round(groupScore(people, r) * 100)}% group match</Text>
+      {/* ADDED (Trisha): honest note when the place isn't the cuisine anyone tapped */}
+      {extras?.label ? <Text style={[styles.body, { marginTop: 8 }]}>{extras.label}</Text> : null}
 
       {reasons.length || priceNote ? (
         <View style={styles.reasons}>
@@ -46,18 +50,22 @@ export default function WhyThisMatch() {
       )}
 
       <Text style={styles.section}>How it fits each person</Text>
-      {perPerson.map((p) => (
+      {perPerson.map((p) => {
+        // CHANGED (Trisha): per-person % from the model when available, else on-device score
+        const pct = extras?.memberFit[p.name] ?? Math.round(p.score * 100);
+        return (
         <View key={p.name} style={styles.person}>
           <View style={styles.personTop}>
             <Text style={styles.personName}>{p.name}</Text>
-            <Text style={styles.personScore}>{Math.round(p.score * 100)}%</Text>
+            <Text style={styles.personScore}>{pct}%</Text>
           </View>
           <View style={styles.track}>
-            <View style={[styles.fill, { width: `${Math.round(p.score * 100)}%` }]} />
+            <View style={[styles.fill, { width: `${pct}%` }]} />
           </View>
           <Text style={styles.personLine}>{p.line}</Text>
         </View>
-      ))}
+        );
+      })}
 
       <GhostButton label="Close" onPress={() => router.back()} />
     </ScrollView>
