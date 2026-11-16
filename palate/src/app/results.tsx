@@ -1,12 +1,12 @@
 import { Redirect, router } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react'; // CHANGED (Trisha): was useMemo; results now come from the API
 import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { BottomBar, GhostButton, Logo, PrimaryButton } from '@/components/palate/ui';
 import { Colors, Fonts } from '@/constants/palette';
 import { goHome } from '@/lib/nav';
-import { getRecommendations, joinWords, type Ranked } from '@/lib/recommend';
+import { getRecommendationsAsync, joinWords, type Ranked } from '@/lib/recommend'; // CHANGED (Trisha): async version asks the Python model first
 import { useSession } from '@/lib/session';
 
 const PAGE = 5;
@@ -18,9 +18,25 @@ export default function Results() {
   const [selected, setSelected] = useState<string | null>(null);
 
   const people = session?.participants;
-  const recs = useMemo(() => (people ? getRecommendations(people, PAGE) : null), [people]);
+  // CHANGED (Trisha): fetch from the model (falls back to on-device matching if the API is off).
+  const [recs, setRecs] = useState<Awaited<ReturnType<typeof getRecommendationsAsync>> | null>(null);
+  useEffect(() => {
+    if (!people) return;
+    let cancelled = false;
+    getRecommendationsAsync(people, PAGE).then((r) => !cancelled && setRecs(r));
+    return () => {
+      cancelled = true;
+    };
+  }, [people]);
 
-  if (!session || !recs) return <Redirect href="/home" />;
+  if (!session) return <Redirect href="/home" />;
+  // ADDED (Trisha): loading state while the model ranks restaurants
+  if (!recs)
+    return (
+      <View style={{ flex: 1, backgroundColor: Colors.cream, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={styles.title}>cooking up a storm…</Text>
+      </View>
+    );
 
   const pages = Math.max(1, Math.ceil(recs.ranked.length / PAGE));
   const shown = recs.ranked.slice((page % pages) * PAGE, (page % pages) * PAGE + PAGE);
