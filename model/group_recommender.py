@@ -1,6 +1,7 @@
 # 1. score each eligible restaurant separately for every group member using their individual taste profile.
 # 2. combine those individual scores using three aggregation methods: average preference, least misery, and consensus.
 # 3. use the consensus score to reward restaurants the group generally likes while penalizing restaurants with high disagreement between members.
+# consensus: "what restaurant has a good overall score AND relatively low disagreement?"
 
 import numpy as np 
 from taste_profile import score_restaurants, allowed 

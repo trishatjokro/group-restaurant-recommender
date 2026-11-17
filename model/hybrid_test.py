@@ -1,9 +1,7 @@
-
 import json
 import pandas as pd
 
 from model.hybrid_model import hybrid_recommend
-
 
 def main():
 
@@ -67,7 +65,6 @@ def main():
         .round(3)
         .to_string(index=False)
     )
-
 
 if __name__ == "__main__":
     main()

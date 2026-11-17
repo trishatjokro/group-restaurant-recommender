@@ -42,7 +42,6 @@ user3 = build_taste_profile(
 
 taste_profiles = [user1, user2, user3]
 
-
 results = recommend_group(
     taste_profiles,
     restaurants,
