@@ -3,7 +3,7 @@
 # 3. use the consensus score to reward restaurants the group generally likes while penalizing restaurants with high disagreement between members.
 
 import numpy as np 
-from taste_profile import score_restaurants, allowed 
+from model.taste_profile import score_restaurants, allowed  # fixed (Trisha): import from the repo's top folder
 
 def group_scores(taste_profiles, restaurants): 
     """
