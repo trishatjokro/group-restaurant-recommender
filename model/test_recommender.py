@@ -2,13 +2,13 @@ import json
 from pathlib import Path
 import pandas as pd
 
-from taste_profile import build_taste_profile
-from group_recommender import recommend_group
+from model.taste_profile import build_taste_profile  # fixed (Trisha): import from the repo's top folder
+from model.group_recommender import recommend_group  # fixed (Trisha)
 
 ROOT = Path(__file__).resolve().parents[1]
 
 restaurants = pd.read_parquet(
-    ROOT / "data" / "output" / "restaurant_vectors.parquet"
+    ROOT / "data" / "cities" / "philadelphia" / "restaurant_vectors.parquet"  # fixed (Trisha): data/output doesn't exist
 )
 
 with open(ROOT / "data" / "mock" / "mock_users.json") as f:

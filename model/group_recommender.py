@@ -4,7 +4,7 @@
 # consensus: "what restaurant has a good overall score AND relatively low disagreement?"
 
 import numpy as np 
-from taste_profile import score_restaurants, allowed 
+from model.taste_profile import score_restaurants, allowed  # fixed (Trisha): import from the repo's top folder
 
 def group_scores(taste_profiles, restaurants): 
     """

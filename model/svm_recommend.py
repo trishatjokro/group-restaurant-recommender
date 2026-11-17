@@ -65,7 +65,7 @@ from model.taste_profile import (BUBBLE_DESCRIPTIONS, DIET_CATEGORIES, allowed,
                                  build_taste_profile, get_model, score_restaurants)
 
 CITY = "philadelphia"
-VECTORS = Path("data") / "cities" / CITY / "restaurant_vectors.parquet"
+VECTORS = Path("data") / "output" / "restaurant_vectors.parquet"
 USERS = Path("data") / "mock" / "mock_users.json"
 
 TOP_K = 5
