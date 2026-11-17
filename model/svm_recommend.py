@@ -21,7 +21,7 @@ the person avoids. Restaurants are ranked by decision_function (distance from th
 boundary), highest first.
 
 Then the same hard rules as the rest of the project are applied: price range,
-"must have" diets, not recommending places they already named as loved, and one
+"must have" diets, and one
 location per chain.
 
 People who skipped (nothing to learn from) get the most popular well-rated
@@ -208,13 +208,12 @@ def cover_top_k(ranked, V, picks, k, P=None):
     return ranked.iloc[chosen].assign(covers=labels)
 
 
-def recommend(user, restaurants, k=TOP_K, method="svm", exclude_loved=True, cover=True):
+def recommend(user, restaurants, k=TOP_K, method="svm", cover=True):
     """Top-k restaurants for one user, best first.
 
     user: one entry of mock_users.json.
     restaurants: the restaurant_vectors table (default index).
     method: "svm" (default) or "cosine" (the existing score_restaurants baseline).
-    exclude_loved: don't recommend places the user already listed as loved.
     cover: for people with 2+ tapped bubbles, pick the top-k so each bubble is
         represented where possible (see "Covering every pick" at the top).
     Returns a DataFrame: business_id, name, categories, stars, n_reviews, score
@@ -232,8 +231,6 @@ def recommend(user, restaurants, k=TOP_K, method="svm", exclude_loved=True, cove
     P = pick_vectors(picks) if likes is not None and picks else None   # embedded once, used twice
 
     ok = allowed(profile, restaurants)                    # price range + must-have diets
-    if exclude_loved:
-        ok &= ~restaurants["business_id"].isin(profile["visited"]).values
 
     if likes is None:                                     # skipped: nothing to learn from
         score = (restaurants["stars"] * np.log1p(restaurants["n_reviews"])).values
