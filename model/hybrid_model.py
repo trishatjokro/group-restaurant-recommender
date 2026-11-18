@@ -114,20 +114,20 @@ def individual_svm_scores(user, restaurants, V, profile):
     return normalize_scores(scores)
 
 
-def hybrid_recommend(users, restaurants, k=5):
+def hybrid_scores(users, restaurants):
     """
-    Generate group recommendations using SVM + Consensus.
+    Steps 1-5 of the hybrid model: score EVERY restaurant for the group.
 
-    Users without taste preferences remain neutral.
-    If everyone skips preferences, use popularity.
+    Used by hybrid_recommend() below and by the app's API (api/app.py),
+    so both rank restaurants the same way.
 
-    Returns a DataFrame containing:
-        - Restaurant information
-        - Individual normalized SVM scores
-        - Average group preference
-        - Least misery
-        - Disagreement
-        - Consensus
+    Returns a dict (one value per restaurant, in restaurants' row order):
+        restaurants      the table with a fresh 0..n-1 index
+        eligible         True where everyone's hard constraints are met
+        average, least_misery, disagreement, consensus
+        active_user_ids  users who gave preferences (skipped users are neutral)
+        all_scores       (active users x restaurants) normalized SVM scores,
+                         or an empty list if everyone skipped
     """
 
     if not users:
@@ -135,9 +135,6 @@ def hybrid_recommend(users, restaurants, k=5):
 
     if restaurants.empty:
         raise ValueError("Restaurant dataset cannot be empty.")
-
-    if k < 1:
-        raise ValueError("k must be at least 1.")
 
     # Reset index to align restaurant rows with embeddings
     restaurants = restaurants.reset_index(drop=True)
@@ -260,6 +257,49 @@ def hybrid_recommend(users, restaurants, k=5):
         # Calculate disagreement among active users only
         all_scores = np.vstack(all_scores)
         disagreement = np.std(all_scores, axis=0)
+
+    return {
+        "restaurants": restaurants,
+        "eligible": eligible,
+        "average": average,
+        "least_misery": least_misery,
+        "disagreement": disagreement,
+        "consensus": consensus,
+        "active_user_ids": active_user_ids,
+        "all_scores": all_scores,
+    }
+
+
+def hybrid_recommend(users, restaurants, k=5):
+    """
+    Generate group recommendations using SVM + Consensus.
+
+    Users without taste preferences remain neutral.
+    If everyone skips preferences, use popularity.
+
+    Returns a DataFrame containing:
+        - Restaurant information
+        - Individual normalized SVM scores
+        - Average group preference
+        - Least misery
+        - Disagreement
+        - Consensus
+    """
+
+    if k < 1:
+        raise ValueError("k must be at least 1.")
+
+    # STEPS 1-5: score every restaurant for the group
+    s = hybrid_scores(users, restaurants)
+    restaurants = s["restaurants"]
+    eligible = s["eligible"]
+    average = s["average"]
+    least_misery = s["least_misery"]
+    disagreement = s["disagreement"]
+    consensus = s["consensus"]
+    active_user_ids = s["active_user_ids"]
+    all_scores = s["all_scores"]
+    active_profiles = active_user_ids  # only used to check "anyone active?"
 
     # STEP 6: Keep only restaurants satisfying all constraints
     results = restaurants.loc[
