@@ -39,8 +39,9 @@ def group_scores(taste_profiles, restaurants):
     # consensus model 
     relevance = all_scores.mean(axis = 0)
     disagreement = all_scores.std(axis = 0)
-
-    consensus_scores = relevance - disagreement 
+    
+    LAMBDA = 0.5
+    consensus_scores = relevance - LAMBDA * disagreement
 
     return (
         average_scores, 
