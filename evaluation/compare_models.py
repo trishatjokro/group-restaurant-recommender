@@ -109,7 +109,7 @@ def all_model_scores(profiles, restaurants, V, popularity, rng):
         "Least misery": cosine.min(axis=0),
         "SVM (Anshika)": svm.mean(axis=0),
         "Consensus (Evelyn)": group_scores(active, restaurants)[2],
-        "Hybrid (SVM + consensus)": svm.mean(axis=0) - svm.std(axis=0),
+        "Hybrid (SVM + consensus)": svm.mean(axis=0) - 0.5 * svm.std(axis=0),
         "Popularity (ref)": popularity,
         "Random (ref)": rng.random(len(V)),
     }
@@ -118,7 +118,7 @@ def all_model_scores(profiles, restaurants, V, popularity, rng):
 def test_friend_pairs(restaurants, V, popularity):
     """Test A: hide a restaurant both friends liked; where does each model rank it?"""
     idx = {b: i for i, b in enumerate(restaurants["business_id"])}
-    reviews = pd.read_parquet(CITY / "reviews_clean.parquet", columns=["user_id", "business_id", "stars", "date"])
+    reviews = pd.read_parquet(Path("data") / "output" / "reviews_clean.parquet", columns=["user_id", "business_id", "stars", "date"])
     liked = liked_reviews(reviews)
     liked = liked[liked.business_id.isin(idx)].sort_values("date").drop_duplicates(["user_id", "business_id"], keep="last")
     liked = liked.groupby("user_id").apply(lambda d: dict(zip(d.business_id, d.date)), include_groups=False).to_dict()
@@ -130,7 +130,7 @@ def test_friend_pairs(restaurants, V, popularity):
         return p
 
     pairs = []
-    friends = pd.read_parquet(CITY / "friend_pairs.parquet").sample(frac=1, random_state=42)
+    friends = pd.read_parquet(Path("data") / "cities" / "philadelphia" / "friend_pairs.parquet").sample(frac=1, random_state=42)
     for a, b in zip(friends.user_a, friends.user_b):
         la, lb = liked.get(a, {}), liked.get(b, {})
         shared = set(la) & set(lb)
@@ -238,7 +238,7 @@ def main():
     out = Path(parser.parse_args().out)
     out.mkdir(parents=True, exist_ok=True)
 
-    restaurants = pd.read_parquet(CITY / "restaurant_vectors.parquet")
+    restaurants = pd.read_parquet(Path("data") / "output" / "restaurant_vectors.parquet")
     V = np.vstack(restaurants["vector"].values)
     popularity = (restaurants["stars"] * np.log1p(restaurants["n_reviews"])).values
 

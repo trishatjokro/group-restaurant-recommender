@@ -1,73 +1,141 @@
-
 import json
+from pathlib import Path
+
 import pandas as pd
 
 from model.hybrid_model import hybrid_recommend
 
 
-def main():
+RESTAURANTS = Path("data") / "output" / "restaurant_vectors.parquet"
+USERS = Path("data") / "mock" / "mock_users.json"
 
-    # Load restaurant dataset
-    restaurants = pd.read_parquet(
-        "data/output/restaurant_vectors.parquet"
+
+# ------------------------------------------------------------
+# Load data
+# ------------------------------------------------------------
+
+restaurants = pd.read_parquet(RESTAURANTS)
+
+with open(USERS) as f:
+    users = json.load(f)
+
+
+# ------------------------------------------------------------
+# Pick a small test group
+# ------------------------------------------------------------
+
+group = users[:3]
+
+
+# ------------------------------------------------------------
+# Display users + preferences
+# ------------------------------------------------------------
+
+print("\nUsers in this group:")
+
+for user in group:
+    print(
+        user["user_id"],
+        "| cravings:", user.get("cravings", []),
+        "| specific:", user.get("specific", []),
+        "| diets:", user.get("diets", {})
     )
 
-    # Load mock users
-    with open("data/mock/mock_users.json") as f:
-        users = json.load(f)
 
-    # Select specific users by their IDs
-    selected_ids = ["U0003", "U0012", "U0019"]
+# ------------------------------------------------------------
+# Run hybrid recommender
+#
+# alpha = 0.5 means:
+# 50% SVM + 50% cosine
+# ------------------------------------------------------------
 
-    group = [
-        user for user in users
-        if user["user_id"] in selected_ids
-    ]
+results = hybrid_recommend(
+    group,
+    restaurants,
+    k=5,
+    alpha=0.5
+)
 
-    # Verify all selected users were found
-    if len(group) != len(selected_ids):
-        raise ValueError("One or more selected users were not found.")
 
-    print("\nGroup Members:")
-    for user in group:
-        print(f"- {user['user_id']}")
+# ------------------------------------------------------------
+# Show main group results
+# ------------------------------------------------------------
 
-    # Run hybrid recommender
-    recommendations = hybrid_recommend(
-        users=group,
-        restaurants=restaurants,
-        k=5
-    )
+print("\nTop 5 recommendations:")
 
-    print("\nTop 5 Group Restaurant Recommendations:\n")
-
-    if recommendations.empty:
-        print("No restaurants satisfy everyone's constraints.")
-        return
-
-    # Include individual SVM scores when available
-    svm_columns = [
-        col for col in recommendations.columns
-        if col.endswith("_svm")
-    ]
-
-    display_columns = (
-        ["name", "stars", "n_reviews"]
-        + svm_columns
-        + [
+print(
+    results[
+        [
+            "name",
             "average",
             "least_misery",
             "disagreement",
-            "consensus"
+            "consensus",
         ]
+    ].to_string(index=False)
+)
+
+
+# ------------------------------------------------------------
+# Show each user's SVM, cosine, and hybrid score
+# ------------------------------------------------------------
+
+print("\nIndividual scores:")
+
+columns = ["name"]
+
+for user in group:
+    user_id = user["user_id"]
+
+    svm_col = f"{user_id}_svm"
+    cosine_col = f"{user_id}_cosine"
+    hybrid_col = f"{user_id}_hybrid"
+
+    if svm_col in results.columns:
+        columns.extend(
+            [
+                svm_col,
+                cosine_col,
+                hybrid_col,
+            ]
+        )
+
+columns.append("consensus")
+
+print(
+    results[
+        columns
+    ].to_string(index=False)
+)
+
+
+# ------------------------------------------------------------
+# Verify that hybrid = 50% SVM + 50% cosine
+# ------------------------------------------------------------
+
+print("\nChecking hybrid score calculation:")
+
+for user in group:
+    user_id = user["user_id"]
+
+    svm_col = f"{user_id}_svm"
+    cosine_col = f"{user_id}_cosine"
+    hybrid_col = f"{user_id}_hybrid"
+
+    if svm_col not in results.columns:
+        continue
+
+    first = results.iloc[0]
+
+    expected = (
+        0.5 * first[svm_col]
+        + 0.5 * first[cosine_col]
     )
+
+    actual = first[hybrid_col]
 
     print(
-        recommendations[display_columns]
-        .round(3)
-        .to_string(index=False)
+        f"{user_id}: "
+        f"expected hybrid = {expected:.6f}, "
+        f"actual hybrid = {actual:.6f}"
     )
-
-
-if __name__ == "__main__":
-    main()
