@@ -55,12 +55,45 @@ those scores into one group ranking.
 
 ## Setup
 
-1. Clone the repo and create a Python environment (Python 3.10–3.12).
-2. Install packages:
-   `pip install pandas pyarrow langdetect matplotlib seaborn scipy scikit-learn folium sentence-transformers umap-learn plotly fastapi uvicorn`
-3. **Run everything from the repo's top folder**, e.g. `python -m evaluation.compare_models2`.
-   In PyCharm: Edit Configurations → Edit configuration templates → Python →
-   Working directory = the repo folder.
+### 1. Clone the repo
+
+**Terminal** (Mac/Linux, or Git Bash on Windows):
+```bash
+git clone https://github.com/trishatjokro/group-restaurant-recommender.git
+cd group-restaurant-recommender
+```
+
+**GitHub Desktop:** File → Clone repository → URL tab → paste
+`https://github.com/trishatjokro/group-restaurant-recommender.git` → choose a folder → Clone.
+
+### 2. Create a Python environment (Python 3.10–3.12)
+
+sentence-transformers doesn't support every new Python release yet, so use 3.10–3.12.
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+```
+
+### 3. Install packages
+
+```bash
+pip install pandas pyarrow langdetect matplotlib seaborn scipy scikit-learn folium sentence-transformers umap-learn plotly fastapi uvicorn
+```
+
+### 4. Get the data
+
+Most of the Philadelphia data comes with the clone. `reviews_clean.parquet` (465 MB)
+is too big for GitHub; see [Getting the data](#getting-the-data) below.
+
+### 5. Run from the repo's top folder
+
+Every script expects to be run from the repo's top folder, e.g.
+```bash
+python -m evaluation.compare_models2
+```
+In PyCharm: Run → Edit Configurations → Edit configuration templates → Python →
+Working directory = the repo folder.
 
 ## Getting the data
 
@@ -69,9 +102,9 @@ Put these files in **`data/cities/philadelphia/`**:
 
 | File | Size | On GitHub? |
 |---|---|---|
-| `restaurant_vectors.parquet` | 18 MB | no: Drive or rebuild |
+| `restaurant_vectors.parquet` | 18 MB | **yes** |
 | `reviews_clean.parquet` | 465 MB | no: Drive or rebuild |
-| `restaurants_clean.parquet` | 3 MB | no: Drive or rebuild |
+| `restaurants_clean.parquet` | 3 MB | **yes** |
 | `friend_pairs.parquet` | 22 MB | **yes** |
 
 > ⚠️ **Data location:** some newer scripts (`svm_recommend.py`, `hybrid_test.py`,
