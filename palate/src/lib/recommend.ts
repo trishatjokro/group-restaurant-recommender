@@ -227,6 +227,7 @@ export async function getRecommendationsAsync(people: Participant[], minResults 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         top_k: 25, // results screen shows 5 at a time
+        method: 'hybrid', // per-person SVM + consensus (model/hybrid_model.py); 'average' = group vector
         members: people.map((p) => ({
           name: p.name,
           skipped: !p.cuisines.length && !p.specifics.length,

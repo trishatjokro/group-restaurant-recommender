@@ -12,3 +12,6 @@ venv/
 
 # Big city datasets (too large for GitHub)
 data/cities/
+data/output/restaurant_vectors.parquet
+
+philly_map/*

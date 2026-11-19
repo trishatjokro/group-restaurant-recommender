@@ -1,7 +1,7 @@
 # Palate API contract
 
 Start the server from the repo's top folder:
-    .venv/bin/python -m uvicorn api.app:app --port 8000
+    python3 -m uvicorn api.app:app --port 8000
 
 ## POST /recommend
 Request:
@@ -11,8 +11,11 @@ Request:
     "avoid": ["Loud"], "avoid_other": "", "loved_restaurants": ["Morimoto"], "prices": [1, 2]},
    {"name": "Connor", "skipped": true}
  ],
- "top_k": 5}
+ "top_k": 5,
+ "method": "hybrid"}
 ```
+- method: "hybrid" (default; per-person SVM + cosine blend, then consensus, model/hybrid_model.py) or
+  "average" (average group vector, model/group_vector.py)
 - bubbles = tapped cuisines/foods; loves_text = anything typed; prices: 1=$, 2=$$, 3=$$$ (empty = any)
 
 Response:
@@ -22,8 +25,12 @@ Response:
     "address": "...", "match_pct": 99, "best_fit_for": "Trisha",
     "member_fit": {"Trisha": 98, "Connor": 81},
     "reason": "Fits Trisha's picks: Japanese", "label": null}
- ]}
+ ],
+ "relaxed": "strict",
+ "method": "hybrid"}
 ```
+- relaxed: "strict", or "relaxDiet" / "relaxAll" when too few places fit everyone's filters
+- method: which ranking was used (echoes the request)
 - match_pct / member_fit: 0–100 (how high it ranks among all restaurants for the group / each person)
 - label: set when a result matches nobody's tapped cuisine, e.g.
   "Not a Japanese restaurant, but reviewers describe similar dishes"
