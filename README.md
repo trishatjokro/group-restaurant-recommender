@@ -1,5 +1,7 @@
 # Palate: group restaurant recommender
 
+🏆 **Winner of Best Overall at the DataSC project showcase (November 2026), out of 9 groups.**
+
 DataSC project. Palate recommends restaurants a whole group will be happy with.
 It turns Yelp reviews and each person's preferences into vectors with a
 sentence-transformer (SBERT), scores every restaurant for each member, and combines
