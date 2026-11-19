@@ -1,8 +1,9 @@
 """
 Palate API: the app sends a group's answers, we return the top restaurants.
 Two ranking methods (pick with "method" in the request):
-  "hybrid"  (default) hybrid_model.py: an SVM per person -> percentile ranks ->
-            consensus (average minus disagreement, from group_recommender.py)
+  "hybrid"  (default) hybrid_model.py: each person's score = 50/50 blend of their SVM
+            and cosine scores (percentile ranks) -> consensus (average minus
+            disagreement, from group_recommender.py)
   "average" taste_profile.py (each person) + group_vector.py (average group vector)
 Run from the repo's top folder:  python3 -m uvicorn api.app:app --port 8000
 
@@ -147,8 +148,9 @@ def score_average(members, profiles, ok):
 
 
 def score_hybrid(members):
-    """hybrid_model.py: per-person SVM scores combined by consensus.
-    Members are passed in the mock-user format the model was built and tested with."""
+    """hybrid_model.py: per-person SVM + cosine blend, combined by consensus.
+    Members are passed in the mock-user format the model was built and tested with
+    (user_id = the member's name; the app makes names unique)."""
     users = []
     for m in members:
         if m.skipped:
@@ -158,13 +160,14 @@ def score_hybrid(members):
         users.append({"user_id": m.name, "cravings": m.bubbles, "specific": [],
                       "loves_text": m.loves_text, "loved_restaurants": m.loved_restaurants,
                       "dislikes_text": avoid_text(m), "prices": m.prices, "diets": diets_of(m)})
-    s = hybrid_scores(users, restaurants)
-    member_scores = {name: spread(s["all_scores"][i]) for i, name in enumerate(s["active_user_ids"])}
-    return spread(s["consensus"]), member_scores
+    res = hybrid_scores(users, restaurants)     # one row per restaurant, same order as `restaurants`
+    member_scores = {m.name: spread(res[f"{m.name}_hybrid"].to_numpy())
+                     for m in members if f"{m.name}_hybrid" in res.columns}
+    return spread(res["consensus"].to_numpy()), member_scores
 
 
 def spread(rank_scores):
-    """hybrid_model's scores are rank percentiles (0-1), so the top ~1% of 7,021 places
+    """hybrid_model's scores are blends of rank percentiles (0-1), so the top ~1% of 7,021 places
     all sit at 0.99+ and would all show "100%". Map them onto a bell curve (z-scores)
     so the top results spread out. Same order, only the match % changes."""
     n = len(rank_scores)

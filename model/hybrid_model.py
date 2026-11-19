@@ -1,10 +1,11 @@
-# 1. Score restaurants using Anshika's SVM for active users.
-# 2. Normalize individual SVM scores to comparable percentile ranks.
-# 3. Keep skipped users neutral during preference aggregation.
-# 4. Pass SVM scores into the original group_recommender.py.
-# 5. If all users skip preferences, use popularity as a fallback.
-# 6. Apply everyone's hard constraints.
-# 7. Return top K restaurants with individual and group scores.
+# 1. Score restaurants using both SVM and cosine similarity for each active user.
+# 2. Normalize both score types to comparable percentile ranks.
+# 3. Combine SVM and cosine scores into one individual hybrid score.
+# 4. Keep skipped users neutral during preference aggregation.
+# 5. Pass hybrid individual scores into group_recommender.py.
+# 6. If all users skip preferences, use popularity as a fallback.
+# 7. Apply everyone's hard constraints.
+# 8. Return either all restaurants or top K recommendations.
 
 import sys
 from pathlib import Path
@@ -13,7 +14,6 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
-# Allow original group_recommender.py imports to work
 model_dir = Path(__file__).resolve().parent
 if str(model_dir) not in sys.path:
     sys.path.insert(0, str(model_dir))
@@ -23,13 +23,19 @@ from model import svm_recommend
 from model.taste_profile import score_restaurants, allowed
 
 
+# Weight given to SVM when combining SVM + cosine.
+# 0.5 = 50% SVM, 50% cosine.
+ALPHA = 0.5
+
+
 def normalize_scores(scores):
     """
-    Convert individual scores to percentile ranks [0, 1].
+    Convert scores to percentile ranks [0, 1].
 
     Higher values indicate stronger relative preference.
     These are not predicted probabilities.
     """
+
     scores = np.asarray(scores, dtype=float)
 
     if not np.isfinite(scores).all():
@@ -38,7 +44,6 @@ def normalize_scores(scores):
     if len(scores) == 0:
         return scores
 
-    # All restaurants have the same score
     if np.ptp(scores) < 1e-12:
         return np.full(len(scores), 0.5)
 
@@ -65,12 +70,13 @@ def individual_svm_scores(user, restaurants, V, profile):
             "Cannot calculate SVM scores without user preferences."
         )
 
-    # Original cosine scores generate SVM pseudo-labels
+    # Cosine-based scores used by Anshika's SVM
+    # to generate pseudo-labels.
     base_scores = score_restaurants(
-        profile, restaurants
+        profile,
+        restaurants
     )
 
-    # Preserve individual selected preference bubbles
     picks = [
         *user.get("cravings", []),
         *user.get("specific", [])
@@ -81,8 +87,7 @@ def individual_svm_scores(user, restaurants, V, profile):
         if picks else None
     )
 
-    # Run Anshika's original SVM
-    # cover_top_k() is never called.
+    # Run Anshika's SVM.
     scores = svm_recommend.svm_scores(
         V,
         base_scores,
@@ -91,12 +96,13 @@ def individual_svm_scores(user, restaurants, V, profile):
         pick_vecs=P
     )
 
-    # Preserve optional preferred-diet bonuses
+    # Preserve preferred-diet bonuses.
     if (
         svm_recommend.DIET_PREFER_BONUS
         and profile["diets_prefer"]
     ):
         for diet in profile["diets_prefer"]:
+
             tagged = restaurants[
                 "categories"
             ].str.contains(
@@ -110,134 +116,288 @@ def individual_svm_scores(user, restaurants, V, profile):
                 * tagged.to_numpy()
             )
 
-    # Normalize before consensus aggregation
     return normalize_scores(scores)
 
 
-def hybrid_scores(users, restaurants):
+def individual_hybrid_scores(
+    user,
+    restaurants,
+    V,
+    profile,
+    alpha=ALPHA
+):
     """
-    Steps 1-5 of the hybrid model: score EVERY restaurant for the group.
+    Combine SVM and cosine scores for one user.
 
-    Used by hybrid_recommend() below and by the app's API (api/app.py),
-    so both rank restaurants the same way.
+    alpha controls the balance:
 
-    Returns a dict (one value per restaurant, in restaurants' row order):
-        restaurants      the table with a fresh 0..n-1 index
-        eligible         True where everyone's hard constraints are met
-        average, least_misery, disagreement, consensus
-        active_user_ids  users who gave preferences (skipped users are neutral)
-        all_scores       (active users x restaurants) normalized SVM scores,
-                         or an empty list if everyone skipped
+        alpha = 0.5
+            50% SVM
+            50% cosine
+
+        alpha = 0.75
+            75% SVM
+            25% cosine
+
+        alpha = 0.25
+            25% SVM
+            75% cosine
+
+    Returns:
+        svm_scores
+        cosine_scores
+        hybrid_scores
+    """
+
+    if not 0 <= alpha <= 1:
+        raise ValueError(
+            "alpha must be between 0 and 1."
+        )
+
+    # -----------------------------------------
+    # SVM scores
+    # -----------------------------------------
+
+    svm_scores = individual_svm_scores(
+        user,
+        restaurants,
+        V,
+        profile
+    )
+
+    # -----------------------------------------
+    # Cosine scores
+    # -----------------------------------------
+
+    cosine_scores = score_restaurants(
+        profile,
+        restaurants
+    )
+
+    # Put cosine scores on the same [0, 1]
+    # percentile-rank scale as SVM scores.
+    cosine_scores = normalize_scores(
+        cosine_scores
+    )
+
+    # -----------------------------------------
+    # Combine the two models
+    # -----------------------------------------
+
+    hybrid_scores = (
+        alpha * svm_scores
+        + (1 - alpha) * cosine_scores
+    )
+
+    return (
+        svm_scores,
+        cosine_scores,
+        hybrid_scores
+    )
+
+
+def hybrid_scores(
+    users,
+    restaurants,
+    alpha=ALPHA
+):
+    """
+    Calculate hybrid scores for ALL restaurants.
+
+    Hybrid pipeline:
+
+        SVM score --------\
+                           -> combined individual score
+        cosine score -----/
+
+                    ↓
+
+        consensus aggregation
+
+                    ↓
+
+        final group ranking
+
+    Users without taste preferences remain neutral.
+
+    If everyone skips preferences, popularity is used
+    as a fallback.
+
+    Returns:
+        DataFrame containing all restaurants and:
+            - average
+            - least_misery
+            - disagreement
+            - consensus
+            - eligible
+            - individual SVM scores
+            - individual cosine scores
+            - individual hybrid scores
     """
 
     if not users:
-        raise ValueError("Group must contain at least one user.")
+        raise ValueError(
+            "Group must contain at least one user."
+        )
 
     if restaurants.empty:
-        raise ValueError("Restaurant dataset cannot be empty.")
+        raise ValueError(
+            "Restaurant dataset cannot be empty."
+        )
 
-    # Reset index to align restaurant rows with embeddings
+    if not 0 <= alpha <= 1:
+        raise ValueError(
+            "alpha must be between 0 and 1."
+        )
+
     restaurants = restaurants.reset_index(drop=True)
 
-    # Restaurant embeddings
-    V = np.vstack(restaurants["vector"].values)
+    V = np.vstack(
+        restaurants["vector"].values
+    )
 
     active_profiles = []
     active_user_ids = []
-    all_scores = []
 
-    # All restaurants initially eligible
-    eligible = np.ones(len(restaurants), dtype=bool)
+    all_svm_scores = []
+    all_cosine_scores = []
+    all_hybrid_scores = []
 
+    eligible = np.ones(
+        len(restaurants),
+        dtype=bool
+    )
+
+    # -----------------------------------------
     # STEP 1: Process every group member
+    # -----------------------------------------
+
     for user in users:
 
         profile = svm_recommend.profile_from_user(
-            user, restaurants
+            user,
+            restaurants
         )
 
-        # Apply hard constraints for every group member,
-        # including those who skipped preferences.
+        # Hard constraints apply to every member,
+        # including users without taste preferences.
         user_allowed = np.asarray(
-            allowed(profile, restaurants),
+            allowed(
+                profile,
+                restaurants
+            ),
             dtype=bool
         )
 
         eligible &= user_allowed
 
-        # STEP 2: Skip users without taste preferences
+        # Users without preferences do not affect
+        # preference aggregation.
         if profile["likes"] is None:
-            print(
-                f"{user.get('user_id', 'Unknown user')}: "
-                "No preferences, excluded from consensus."
-            )
             continue
 
-        # STEP 3: Calculate individual normalized SVM scores
-        scores = individual_svm_scores(
+        # -----------------------------------------
+        # STEP 2: Calculate individual
+        # SVM + cosine + hybrid scores
+        # -----------------------------------------
+
+        (
+            svm_scores,
+            cosine_scores,
+            combined_scores
+        ) = individual_hybrid_scores(
             user,
             restaurants,
             V,
+            profile,
+            alpha=alpha
+        )
+
+        active_profiles.append(
             profile
         )
 
-        active_profiles.append(profile)
         active_user_ids.append(
-            user.get("user_id", f"User{len(active_profiles)}")
-        )
-        all_scores.append(scores)
-
-    # STEP 4: Determine whether to use consensus or popularity
-    if not active_profiles:
-
-        print(
-            "\nAll users skipped preferences. "
-            "Using popularity fallback."
-        )
-
-        # Same popularity formula as Anshika's SVM fallback
-        popularity = (
-            restaurants["stars"].to_numpy()
-            * np.log1p(
-                restaurants["n_reviews"].to_numpy()
+            user.get(
+                "user_id",
+                f"User{len(active_profiles)}"
             )
         )
 
-        popularity = normalize_scores(popularity)
+        all_svm_scores.append(
+            svm_scores
+        )
 
-        # No individual SVM scores in the fallback case
+        all_cosine_scores.append(
+            cosine_scores
+        )
+
+        all_hybrid_scores.append(
+            combined_scores
+        )
+
+    # -----------------------------------------
+    # STEP 3: Everyone skipped preferences
+    # -----------------------------------------
+
+    if not active_profiles:
+
+        popularity = (
+            restaurants["stars"].to_numpy()
+            * np.log1p(
+                restaurants[
+                    "n_reviews"
+                ].to_numpy()
+            )
+        )
+
+        popularity = normalize_scores(
+            popularity
+        )
+
         average = popularity.copy()
         least_misery = popularity.copy()
-        disagreement = np.zeros(len(restaurants))
+
+        disagreement = np.zeros(
+            len(restaurants)
+        )
+
         consensus = popularity.copy()
 
     else:
 
-        print(
-            f"\nUsing SVM scores from "
-            f"{len(active_profiles)} of {len(users)} users."
-        )
-
-        # STEP 5: Provide SVM scores to the original
-        # group_recommender.py without editing it.
+        # -----------------------------------------
+        # STEP 4: Give the HYBRID individual
+        # scores to group_recommender.py
+        # -----------------------------------------
 
         score_lookup = {
             id(profile): scores
             for profile, scores in zip(
-                active_profiles, all_scores
+                active_profiles,
+                all_hybrid_scores
             )
         }
 
-        def hybrid_score_restaurants(profile, restaurants):
+        def hybrid_score_restaurants(
+            profile,
+            restaurants
+        ):
             return score_lookup[id(profile)]
 
-        # Temporarily replace individual scoring
-        # while running your original consensus model.
+        # group_recommender.py now receives the
+        # blended SVM + cosine score for each user.
+        #
+        # It then performs:
+        #   average
+        #   least misery
+        #   consensus
         with patch.object(
             group_recommender,
             "score_restaurants",
             hybrid_score_restaurants
         ):
+
             (
                 average,
                 least_misery,
@@ -248,90 +408,124 @@ def hybrid_scores(users, restaurants):
                 restaurants
             )
 
-        # Combine constraints from active and skipped users
+        # Combine constraints from active and
+        # skipped users.
         eligible &= np.asarray(
             active_eligible,
             dtype=bool
         )
 
-        # Calculate disagreement among active users only
-        all_scores = np.vstack(all_scores)
-        disagreement = np.std(all_scores, axis=0)
+        # Convert lists into matrices:
+        #
+        # users x restaurants
+        all_svm_scores = np.vstack(
+            all_svm_scores
+        )
 
-    return {
-        "restaurants": restaurants,
-        "eligible": eligible,
-        "average": average,
-        "least_misery": least_misery,
-        "disagreement": disagreement,
-        "consensus": consensus,
-        "active_user_ids": active_user_ids,
-        "all_scores": all_scores,
-    }
+        all_cosine_scores = np.vstack(
+            all_cosine_scores
+        )
+
+        all_hybrid_scores = np.vstack(
+            all_hybrid_scores
+        )
+
+        # Disagreement is measured using the
+        # combined hybrid scores.
+        disagreement = np.std(
+            all_hybrid_scores,
+            axis=0
+        )
+
+    # -----------------------------------------
+    # STEP 5: Build result DataFrame
+    # -----------------------------------------
+
+    results = restaurants.copy()
+
+    results["average"] = average
+    results["least_misery"] = least_misery
+    results["disagreement"] = disagreement
+    results["consensus"] = consensus
+    results["eligible"] = eligible
+
+    # -----------------------------------------
+    # STEP 6: Add individual scores
+    # -----------------------------------------
+
+    if active_profiles:
+
+        for i, user_id in enumerate(
+            active_user_ids
+        ):
+
+            results[
+                f"{user_id}_svm"
+            ] = all_svm_scores[i]
+
+            results[
+                f"{user_id}_cosine"
+            ] = all_cosine_scores[i]
+
+            results[
+                f"{user_id}_hybrid"
+            ] = all_hybrid_scores[i]
+
+    return results
 
 
-def hybrid_recommend(users, restaurants, k=5):
+def hybrid_recommend(
+    users,
+    restaurants,
+    k=5,
+    alpha=ALPHA
+):
     """
-    Generate group recommendations using SVM + Consensus.
+    Return the top K hybrid recommendations.
 
-    Users without taste preferences remain neutral.
-    If everyone skips preferences, use popularity.
-
-    Returns a DataFrame containing:
-        - Restaurant information
-        - Individual normalized SVM scores
-        - Average group preference
-        - Least misery
-        - Disagreement
-        - Consensus
+    Uses hybrid_scores() to score every restaurant,
+    then:
+        - removes ineligible restaurants
+        - ranks by consensus
+        - removes duplicate restaurant names
+        - returns top K
     """
 
     if k < 1:
-        raise ValueError("k must be at least 1.")
+        raise ValueError(
+            "k must be at least 1."
+        )
 
-    # STEPS 1-5: score every restaurant for the group
-    s = hybrid_scores(users, restaurants)
-    restaurants = s["restaurants"]
-    eligible = s["eligible"]
-    average = s["average"]
-    least_misery = s["least_misery"]
-    disagreement = s["disagreement"]
-    consensus = s["consensus"]
-    active_user_ids = s["active_user_ids"]
-    all_scores = s["all_scores"]
-    active_profiles = active_user_ids  # only used to check "anyone active?"
+    # Score every restaurant.
+    results = hybrid_scores(
+        users,
+        restaurants,
+        alpha=alpha
+    )
 
-    # STEP 6: Keep only restaurants satisfying all constraints
-    results = restaurants.loc[
-        eligible,
-        [
-            "business_id",
-            "name",
-            "categories",
-            "stars",
-            "n_reviews"
-        ]
+    # -----------------------------------------
+    # STEP 1: Remove restaurants violating
+    # hard constraints
+    # -----------------------------------------
+
+    results = results[
+        results["eligible"]
     ].copy()
 
-    # STEP 7: Include group aggregation scores
-    results["average"] = average[eligible]
-    results["least_misery"] = least_misery[eligible]
-    results["disagreement"] = disagreement[eligible]
-    results["consensus"] = consensus[eligible]
+    # -----------------------------------------
+    # STEP 2: Rank by consensus
+    # -----------------------------------------
 
-    # STEP 8: Display each active user's normalized SVM score
-    if active_profiles:
-        for i, user_id in enumerate(active_user_ids):
-            results[f"{user_id}_svm"] = all_scores[i, eligible]
-
-    # STEP 9: Rank by highest consensus
     results = results.sort_values(
         "consensus",
         ascending=False,
         kind="stable"
     )
 
-    # Keep only one location per restaurant chain/name
+    # -----------------------------------------
+    # STEP 3: Keep one location per name
+    # -----------------------------------------
+
     results = results[
         ~results["name"]
         .str.lower()
@@ -339,5 +533,12 @@ def hybrid_recommend(users, restaurants, k=5):
         .duplicated()
     ]
 
-    # STEP 10: Return top K recommendations
-    return results.head(k).reset_index(drop=True)
+    # -----------------------------------------
+    # STEP 4: Return top K
+    # -----------------------------------------
+
+    return (
+        results
+        .head(k)
+        .reset_index(drop=True)
+    )

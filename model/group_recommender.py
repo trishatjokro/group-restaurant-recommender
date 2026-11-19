@@ -1,6 +1,7 @@
 # 1. score each eligible restaurant separately for every group member using their individual taste profile.
 # 2. combine those individual scores using three aggregation methods: average preference, least misery, and consensus.
 # 3. use the consensus score to reward restaurants the group generally likes while penalizing restaurants with high disagreement between members.
+# consensus: "what restaurant has a good overall score AND relatively low disagreement?"
 
 import numpy as np 
 from model.taste_profile import score_restaurants, allowed  # fixed (Trisha): import from the repo's top folder
@@ -38,8 +39,9 @@ def group_scores(taste_profiles, restaurants):
     # consensus model 
     relevance = all_scores.mean(axis = 0)
     disagreement = all_scores.std(axis = 0)
-
-    consensus_scores = relevance - disagreement 
+    
+    LAMBDA = 0.5
+    consensus_scores = relevance - LAMBDA * disagreement
 
     return (
         average_scores, 

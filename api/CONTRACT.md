@@ -14,7 +14,7 @@ Request:
  "top_k": 5,
  "method": "hybrid"}
 ```
-- method: "hybrid" (default; per-person SVM + consensus, model/hybrid_model.py) or
+- method: "hybrid" (default; per-person SVM + cosine blend, then consensus, model/hybrid_model.py) or
   "average" (average group vector, model/group_vector.py)
 - bubbles = tapped cuisines/foods; loves_text = anything typed; prices: 1=$, 2=$$, 3=$$$ (empty = any)
 
